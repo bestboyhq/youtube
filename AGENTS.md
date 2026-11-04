@@ -35,6 +35,7 @@ Keep the Bestboy chrome (`src/lib/bestboy.css`, the `(site)` layout) out of `bef
 ## Third-party content
 
 The code is MIT, but a roasted site's copy, design, images, fonts, and stylesheets belong to its owners.
+That holds in `before/`, under `static/roasts/<site-slug>/`, and for whatever copy, design, and assets `after/` keeps from `before/`.
 They are shown for commentary and critique, and they are not covered by the MIT license, as `NOTICE` and `README.md` say.
 So every roast saves the owner's files (images, fonts, stylesheets) only under `static/roasts/<site-slug>/` or in `before/`, the places that notice covers, and `after/` loads them from there instead of keeping copies of its own.
 Load a font the owner licensed from someone else, such as a commercial typeface, from the owner's own server instead of saving a copy.

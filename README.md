@@ -24,5 +24,6 @@ The code is [MIT](LICENSE).
 ## Third-party content
 
 Everything recreated under `src/routes/roasts/*/before/` and saved under `static/roasts/*/` belongs to its owners.
+So does the owner's copy, design, and assets that `src/routes/roasts/*/after/` keeps from `before/`.
 It is shown for commentary and critique, and it is not covered by the MIT license.
 [`NOTICE`](NOTICE) says the same beside the license.

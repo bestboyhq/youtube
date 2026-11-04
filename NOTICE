@@ -3,5 +3,6 @@ Third-party content
 The code in this repository is licensed under the MIT License in LICENSE.
 
 Everything recreated under src/routes/roasts/*/before/ and everything saved under static/roasts/*/
-(the copy, design, images, fonts, and stylesheets of the roasted sites) belongs to its owners.
+(the copy, design, images, fonts, and stylesheets of the roasted sites) belongs to its owners,
+and so does the owner's copy, design, and assets that src/routes/roasts/*/after/ keeps from before/.
 It is shown for commentary and critique, and it is not covered by the MIT License.
