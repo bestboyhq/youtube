@@ -5,13 +5,15 @@
 -->
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { tip } from '#lib/tooltip.ts';
 
 	type Theme = 'light' | 'system' | 'dark';
 
-	const themes: { value: Theme; label: string; path: string[] }[] = [
+	const themes: { value: Theme; label: string; tip: string; path: string[] }[] = [
 		{
 			value: 'light',
 			label: 'Light theme',
+			tip: 'Light',
 			path: [
 				'M12 2V4.22M12 19.78V22M22 12H19.78M4.22 12H2M19.07 19.07L17.5 17.5M6.5 6.5L4.93 4.93M4.93 19.07L6.5 17.5M17.5 6.5L19.07 4.93M17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12Z'
 			]
@@ -19,6 +21,7 @@
 		{
 			value: 'system',
 			label: 'System theme',
+			tip: 'System',
 			path: [
 				'M8.5 15.33C7.4 15.33 6.5 14.43 6.5 13.33V10.66C6.5 9.56 7.4 8.66 8.5 8.66C9.6 8.66 10.5 9.56 10.5 10.66V13.33C10.5 14.43 9.6 15.33 8.5 15.33Z',
 				'M17.5 10C17.5 9.26 16.9 8.67 16.17 8.67H15.21C14.27 8.67 13.51 9.43 13.51 10.37C13.51 10.94 13.88 11.45 14.42 11.64L16.6 12.37C17.14 12.55 17.51 13.06 17.51 13.63C17.51 14.57 16.75 15.34 15.81 15.34H14.85C14.11 15.34 13.52 14.74 13.52 14.01',
@@ -28,6 +31,7 @@
 		{
 			value: 'dark',
 			label: 'Dark theme',
+			tip: 'Dark',
 			path: [
 				'M12 12C14.37 9.57 14.95 5.91 13.46 2.87C13.37 2.65 13.41 2.39 13.57 2.21C13.73 2.03 13.98 1.96 14.21 2.03C15.99 2.49 17.62 3.42 18.92 4.71C22.95 8.63 23.03 15.08 19.11 19.11C15.08 23.03 8.64 22.95 4.72 18.92C3.42 17.62 2.49 16 2.03 14.21C1.96 13.98 2.03 13.73 2.21 13.57C2.39 13.41 2.65 13.37 2.87 13.46C5.92 14.95 9.57 14.37 12 12Z'
 			]
@@ -81,7 +85,7 @@
 
 <div class="seg" role="radiogroup" aria-label="Theme" tabindex="-1" {onkeydown}>
 	<span class="indicator" aria-hidden="true"></span>
-	{#each themes as { value, label, path }, i (value)}
+	{#each themes as { value, label, tip: text, path }, i (value)}
 		<button
 			bind:this={buttons[i]}
 			type="button"
@@ -91,6 +95,7 @@
 			aria-label={label}
 			tabindex={value === theme ? 0 : -1}
 			onclick={() => select(value)}
+			use:tip={text}
 		>
 			<svg viewBox="0 0 24 24" aria-hidden="true">
 				{#each path as d (d)}<path {d} />{/each}
