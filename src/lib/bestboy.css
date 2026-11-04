@@ -1,0 +1,137 @@
+/* Bestboy family design tokens, copied from bestboyhq/platform docs/design.md. */
+/* A change lands there first, then here by hand. */
+/* Theme: data-theme="light|dark" on <html>, no attribute means the system's choice. */
+
+@import '@fontsource-variable/inter/opsz.css';
+@import '@fontsource-variable/jetbrains-mono';
+
+@font-face {
+	font-family: 'Inter Fallback';
+	src: local('Arial');
+	size-adjust: 107.12%;
+	ascent-override: 90.2%;
+	descent-override: 22.48%;
+	line-gap-override: 0%;
+}
+
+@font-face {
+	font-family: 'Mono Fallback';
+	src: local('Menlo'), local('Consolas');
+	size-adjust: 96%;
+	ascent-override: 109%;
+	descent-override: 27%;
+}
+
+/* Each color is light-dark(light, dark), resolved by color-scheme. */
+:root {
+	color-scheme: light dark;
+	--surface-root: light-dark(#fafaf8, #181817);
+	--surface-elevated: light-dark(#ffffff, #20201f);
+	--surface-hover: light-dark(#f4f4f3, #292928);
+	--surface-well: light-dark(#f4f4f3, #1c1c1b);
+	--panel: light-dark(#f4f4f3, #111110);
+	--surface-inverse: light-dark(#070707, #fafaf8);
+	--surface-inverse-hover: light-dark(#343433, #e7e7e6);
+	--fg-default: light-dark(#181817, #f4f4f3);
+	--fg-prose: light-dark(#343433, #dededc);
+	--fg-secondary: light-dark(#4a4a49, #a0a09e);
+	--fg-muted: light-dark(#6b6b69, #898987);
+	--fg-faint: light-dark(#737371, #636362);
+	--border-subtle: light-dark(#e7e7e6, #20201f);
+	--border-default: light-dark(#d4d4d2, #343433);
+	--border-strong: light-dark(#babab8, #4a4a49);
+	--ring-faint: light-dark(rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.1));
+	--frame: rgb(128 128 128 / 0.26);
+	--cross: rgb(128 128 128 / 0.7);
+	--brand: light-dark(oklch(51.51% 0.2399 257.85), oklch(51.51% 0.2307 257.85));
+	--success: light-dark(oklch(51.56% 0.1507 147.5), oklch(63.31% 0.1776 147.5));
+	--painting: linear-gradient(
+		100deg,
+		#1957fa 6%,
+		#6365cd 26%,
+		#9e6594 42%,
+		#d35351 58%,
+		#ed3e11 72%,
+		#fb8400 94%
+	);
+
+	--font-sans: 'Inter Variable', 'Inter Fallback', system-ui, sans-serif;
+	--font-mono: 'JetBrains Mono Variable', 'Mono Fallback', ui-monospace, monospace;
+	--ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+	--gutter: 40px;
+	--pad: 40px;
+	--col: min(1200px, 100vw - 2 * var(--gutter));
+	--bar-h: calc(64px + env(safe-area-inset-top));
+	--crosses:
+		linear-gradient(var(--frame) 0 0) 0 4px / 100% 1px,
+		linear-gradient(var(--cross) 0 0) calc(50vw - var(--col) / 2) 0 / 1px 9px,
+		linear-gradient(var(--cross) 0 0) calc(50vw - var(--col) / 2 - 4px) 4px / 9px 1px,
+		linear-gradient(var(--cross) 0 0) calc(50vw + var(--col) / 2 - 1px) 0 / 1px 9px,
+		linear-gradient(var(--cross) 0 0) calc(50vw + var(--col) / 2 - 5px) 4px / 9px 1px;
+}
+
+:root[data-theme='light'] {
+	color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+	color-scheme: dark;
+}
+
+@media (max-width: 1023px) {
+	:root {
+		--gutter: 0px;
+		--pad: 24px;
+		--cross: transparent;
+	}
+}
+
+@media (max-width: 639px) {
+	:root {
+		--pad: 20px;
+	}
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--surface-root);
+	color: var(--fg-default);
+	font: 400 15px/1.6 var(--font-sans);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	font-optical-sizing: auto;
+}
+
+body {
+	margin: 0;
+}
+
+h1,
+h2,
+h3 {
+	margin: 0;
+	font-weight: 550;
+	text-wrap: balance;
+}
+
+p {
+	margin: 0;
+	text-wrap: pretty;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+:focus-visible {
+	outline: 2px solid var(--brand);
+	outline-offset: 2px;
+	border-radius: 4px;
+}
