@@ -1,135 +1,13 @@
 <script lang="ts">
-	import CarouselSlide, { type Slide } from './CarouselSlide.svelte';
+	import CarouselSlide from './CarouselSlide.svelte';
+	import QuoteGrid from './QuoteGrid.svelte';
+	import { quotes } from './quotes';
+	import { slides } from './slides';
+	import './base.css';
 
-	const slides: Slide[] = [
-		{
-			name: 'Grok Bot',
-			badge: 'AI',
-			index: '01 / 06',
-			title: ['ChatGPT is', 'not the', 'whole story.'],
-			accent: ['Grok is.'],
-			body: 'The model everyone benchmarks against is rarely the one that wins the workflow.',
-			chips: ['Speed', 'Context', 'Cost']
-		},
-		{
-			name: 'Grok Bot',
-			badge: 'AI',
-			index: '02 / 06',
-			title: ['Three models.', 'One honest', 'comparison.'],
-			accent: [],
-			body: 'Same prompt, same data, three answers. Here is where each one actually breaks.',
-			chips: ['GPT', 'Claude', 'Gemini']
-		},
-		{
-			name: 'Grok Bot',
-			badge: 'AI',
-			index: '03 / 06',
-			title: ['Nobody tells you', 'what the', 'benchmarks miss.'],
-			accent: ['Until now.'],
-			body: 'Real tasks, not trivia. The gap shows up in the second hour, not the first answer.',
-			chips: ['Research', 'Code', 'Writing']
-		},
-		{
-			name: 'Grok Bot',
-			badge: 'TEARDOWN',
-			index: '04 / 06',
-			title: ['The 5-slide', 'teardown that', 'got 2.1M views.'],
-			accent: [],
-			body: 'Hook, tension, proof, turn, close. Copy the structure, not the topic.',
-			chips: ['Hook', 'Proof', 'Close']
-		},
-		{
-			name: 'Grok Bot',
-			badge: 'PROMPTS',
-			index: '05 / 06',
-			title: ['Your prompt is', 'not the', 'problem.'],
-			accent: ['The format is.'],
-			body: 'A great idea in a flat layout still gets scrolled. Start with a shape that holds attention.',
-			chips: ['Format', 'Pacing', 'Layout']
-		},
-		{
-			name: 'Grok Bot',
-			badge: 'SAVE',
-			index: '06 / 06',
-			title: ['Save this', 'before you', 'post again.'],
-			accent: ['You will need it.'],
-			body: 'The next carousel you make should start here, not from a blank page.',
-			chips: ['Save', 'Share', 'Reuse']
-		}
-	];
-
-	const brands = [
-		{
-			label: 'EasySociable',
-			accent: '#a57203',
-			surface: '#fdfaf1',
-			handle: '@easysociable'
-		},
-		{
-			label: 'Buji',
-			accent: '#8a5a00',
-			surface: '#f8f2e6',
-			handle: '@buji_ai'
-		}
-	];
-
-	const brandSlides: Slide[] = [
-		{
-			name: 'EasySociable',
-			badge: 'CLAUDE CODE',
-			index: '/ 01',
-			title: ['Stop reminding', 'Claude. Make it'],
-			accent: ['automatic.'],
-			body: '(4 hooks I set up on day one.)'
-		},
-		{
-			name: '不急同学',
-			badge: 'CLAUDE CODE',
-			index: '/ 01',
-			title: ['Stop reminding', 'Claude. Make it'],
-			accent: ['automatic.'],
-			body: '(4 hooks I set up on day one.)'
-		}
-	];
-
-	const formulas = [
-		{
-			name: 'The 5-slide teardown',
-			meta: 'Instagram · 5 slides',
-			line: 'Break one big claim into five proof points.'
-		},
-		{
-			name: 'The 7-slide listicle',
-			meta: 'LinkedIn · 7 slides',
-			line: 'Numbered lessons that earn the save.'
-		},
-		{
-			name: 'The 10-slide story',
-			meta: 'TikTok · 10 slides',
-			line: 'A first-person arc with a turn on slide 8.'
-		}
-	];
-
-	const quotes = [
-		{
-			text: 'I used to lose a Sunday to one carousel. Now I paste a prompt before coffee and spend the time answering comments.',
-			name: 'Maya R.',
-			role: 'Creator, 84k followers',
-			initials: 'MR'
-		},
-		{
-			text: 'We run six client accounts from one seat. The Brand switch alone paid for the year.',
-			name: 'Daniel K.',
-			role: 'Creative director, studio of 9',
-			initials: 'DK'
-		},
-		{
-			text: 'Our clients approve carousels in the link. No PDFs, no screenshots, no "slide 4" emails.',
-			name: 'Priya S.',
-			role: 'Social lead, B2B agency',
-			initials: 'PS'
-		}
-	];
+	const root = '/roasts/easysociable-com/after';
+	const creatorPath = `${root}/for/creators`;
+	const agencyPath = `${root}/for/agencies`;
 
 	const faqs = [
 		{
@@ -163,11 +41,8 @@
 	];
 
 	let activeSlide = $state(0);
-	let brand = $state(0);
-	let demoStep = $state(0);
 	let menuOpen = $state(false);
 	let heroAuto = $state(true);
-	let demoAuto = $state(true);
 	let carousels = $state(30);
 	let brandsCount = $state(1);
 	let copied = $state<string | null>(null);
@@ -191,10 +66,6 @@
 
 	const agentPrompt =
 		'Use the EasySociable skill to make a carousel with the "The 5-slide teardown" formula for [your idea]. Write the hook, plan the slides, lay them out in my Brand, and open them in Studio for edits.';
-
-	function formulaPrompt(name: string) {
-		return `Use the EasySociable skill to make a carousel with the "${name}" formula for [your idea]. Write the hook, plan the slides, lay them out in my Brand, and open them in Studio for edits.`;
-	}
 
 	async function copy(text: string, key: string) {
 		if (copyTimer) clearTimeout(copyTimer);
@@ -229,18 +100,6 @@
 		const id = window.setInterval(() => {
 			activeSlide = (activeSlide + 1) % slides.length;
 		}, 4800);
-		return () => window.clearInterval(id);
-	});
-
-	$effect(() => {
-		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-			demoStep = 3;
-			return;
-		}
-		if (!demoAuto) return;
-		const id = window.setInterval(() => {
-			demoStep = (demoStep + 1) % 4;
-		}, 2800);
 		return () => window.clearInterval(id);
 	});
 </script>
@@ -321,7 +180,7 @@
 			</a>
 			<div class="nav-links">
 				<a href="#how">How it works</a>
-				<a href="#formulas">Formulas</a>
+				<a href="#for">Who it's for</a>
 				<a href="#pricing">Pricing</a>
 				<a href="https://easysociable.com/docs">Docs</a>
 			</div>
@@ -344,7 +203,7 @@
 		{#if menuOpen}
 			<div class="mobile-menu" id="mobile-nav">
 				<a href="#how" onclick={closeMenu}>How it works</a>
-				<a href="#formulas" onclick={closeMenu}>Formulas</a>
+				<a href="#for" onclick={closeMenu}>Who it's for</a>
 				<a href="#pricing" onclick={closeMenu}>Pricing</a>
 				<a href="https://easysociable.com/docs" onclick={closeMenu}>Docs</a>
 				<a class="pill pill-dark" href="https://easysociable.com/auth/signup" onclick={closeMenu}>
@@ -365,7 +224,7 @@
 					<p class="lead hero-lead">
 						One prompt turns a proven viral format into a finished, on-brand carousel for creators
 						and the teams behind them. Edit every word in Studio, then publish to Instagram,
-						LinkedIn, TikTok, Threads, X or 小红书 from your phone.
+						LinkedIn, TikTok, Threads, X or <span class="nowrap">小红书</span> from your phone.
 					</p>
 					<div class="hero-actions">
 						<button
@@ -376,7 +235,7 @@
 							{copied === 'hero' ? 'Prompt copied' : 'Make my first carousel'}
 							{@render arrow()}
 						</button>
-						<a class="pill pill-soft pill-lg" href="#formulas">See viral formulas</a>
+						<a class="pill pill-soft pill-lg" href="{creatorPath}#formats">See viral formulas</a>
 					</div>
 					<p class="hero-note">
 						Copies a prompt for Claude Code, Codex or Cursor. Your agent installs the skill, signs
@@ -535,7 +394,8 @@
 						<span class="how-step-num">04</span>
 						<h3>Publish anywhere</h3>
 						<p>
-							Send every page to Instagram, LinkedIn, TikTok, Threads, X or 小红书 from your phone.
+							Send every page to Instagram, LinkedIn, TikTok, Threads, X or
+							<span class="nowrap">小红书</span> from your phone.
 						</p>
 					</article>
 				</div>
@@ -582,246 +442,6 @@
 			</div>
 		</section>
 
-		<section class="band" id="for">
-			<div class="rail wrap">
-				<div class="section-head">
-					<p class="eyebrow">For creators and agencies</p>
-					<h2 class="display h2">One studio. <em>Two ways to work.</em></h2>
-					<p class="lead">
-						Most carousel tools pick a lane. EasySociable works for the person posting daily and the
-						team running ten clients.
-					</p>
-				</div>
-				<div class="personas">
-					<article class="persona creator">
-						<span class="persona-tag">For creators</span>
-						<h3>Ship daily. Skip the design sprint.</h3>
-						<p class="persona-lead">
-							For the person who posts every day and cannot spend it in a design tool.
-						</p>
-						<ul>
-							<li>{@render checkIcon()}Proven formats instead of a blank canvas</li>
-							<li>{@render checkIcon()}One Brand, every platform size</li>
-							<li>{@render checkIcon()}Publish from your phone in two taps</li>
-							<li>{@render checkIcon()}Edits that never break the layout</li>
-						</ul>
-						<a class="pill pill-dark" href="https://easysociable.com/auth/signup">
-							Start 14-day trial
-						</a>
-					</article>
-					<article class="persona agency">
-						<span class="persona-tag">For agencies</span>
-						<h3>Run every client from one seat.</h3>
-						<p class="persona-lead">
-							For the team running a carousel calendar for every client on the roster.
-						</p>
-						<ul>
-							<li>{@render checkIcon()}Every client Brand in one studio</li>
-							<li>{@render checkIcon()}Switch a carousel's Brand in one click</li>
-							<li>{@render checkIcon()}Review links with view, edit or publish permissions</li>
-							<li>{@render checkIcon()}Usage that scales with your roster</li>
-						</ul>
-						<a class="pill pill-dark" href="https://easysociable.com/contact">Talk to us</a>
-					</article>
-				</div>
-				<p class="persona-note">
-					Not sure where you fit? Start the trial. Add Brands when the roster grows.
-				</p>
-			</div>
-		</section>
-
-		<section class="wrap" id="brands">
-			<div class="rail brand-layout">
-				<div class="brand-copy">
-					<p class="eyebrow">Brands</p>
-					<h2 class="display h2">One carousel. <em>Every Brand.</em></h2>
-					<p class="lead">
-						Create a Brand once: name, handle, avatar and colors. Switch any carousel to another
-						Brand and every slide updates without moving a single element.
-					</p>
-					<p class="brand-small">Built for creators with two accounts and agencies with twenty.</p>
-					<a class="text-link" href="https://easysociable.com/docs">
-						How Brands work {@render arrow()}
-					</a>
-				</div>
-				<div class="brand-stage">
-					<div class="brand-toggle" role="group" aria-label="Switch Brand">
-						{#each brands as item, index}
-							<button
-								type="button"
-								class:active={brand === index}
-								aria-pressed={brand === index}
-								onclick={() => (brand = index)}
-							>
-								<span class="mono">{item.label.slice(0, 1)}</span>
-								<span>{item.label}</span>
-							</button>
-						{/each}
-					</div>
-					<div class="brand-covers">
-						{#each brands as item, index}
-							<div
-								class="cover"
-								class:front={brand === index}
-								aria-hidden={brand !== index}
-								style:--tilt={index === 0 ? '-2deg' : '2deg'}
-							>
-								<CarouselSlide
-									slide={brandSlides[index]}
-									accent={item.accent}
-									surface={item.surface}
-									handle={item.handle}
-								/>
-							</div>
-						{/each}
-					</div>
-					<p class="brand-caption" aria-live="polite">
-						{@render checkIcon()}
-						{brand === 0 ? 'EasySociable Brand selected' : 'Buji Brand selected'}
-					</p>
-				</div>
-			</div>
-		</section>
-
-		<section class="band" id="share">
-			<div class="rail wrap">
-				<div class="share-layout">
-					<div class="share-copy">
-						<p class="eyebrow">Client review</p>
-						<h2 class="display h2">Send a link. <em>Get a yes.</em></h2>
-						<p class="lead">
-							No attachments, no account, no "which slide?" threads. Your client opens the carousel
-							on any device, sees every page and comments on the exact one.
-						</p>
-						<ul class="mini-list">
-							<li>{@render checkIcon()}They open it without signing up</li>
-							<li>{@render checkIcon()}Comments land on the slide</li>
-							<li>{@render checkIcon()}You choose who can view, edit or publish</li>
-						</ul>
-						<a class="text-link" href="https://easysociable.com/docs">
-							How share links work {@render arrow()}
-						</a>
-					</div>
-
-					<div class="share-demo">
-						<div class="phone phone-agent" aria-hidden="true">
-							<div class="phone-screen">
-								<div class="phone-status"><span>9:41</span><span class="status-dots"></span></div>
-								<div class="mini-carousel">
-									<CarouselSlide slide={slides[2]} />
-									<span class="mini-counter">3 / 6</span>
-								</div>
-								<div class="sheet">
-									<p class="sheet-title">Share with client</p>
-									<div class="perm-row"><span>Can view</span><span class="switch on"></span></div>
-									<div class="perm-row"><span>Can edit</span><span class="switch"></span></div>
-									<div class="perm-row"><span>Can publish</span><span class="switch"></span></div>
-									<div class="sheet-link">
-										<span>easysociable.com/s/3kf9</span>
-										{#if demoStep >= 1}<span class="copied">Copied</span>{/if}
-									</div>
-									<button
-										class="sheet-pill"
-										class:active={demoStep === 1}
-										type="button"
-										tabindex="-1"
-									>
-										{demoStep >= 1 ? 'Link copied' : 'Copy link'}
-									</button>
-								</div>
-							</div>
-						</div>
-
-						<div class="phone phone-client" aria-hidden="true">
-							<div class="phone-screen">
-								<div class="phone-status"><span>9:41</span><span class="status-dots"></span></div>
-								<div class="client-head">
-									<span class="client-avatar">M</span>
-									<span>Maya shared a carousel<small>3 minutes ago</small></span>
-								</div>
-								<div class="mini-carousel">
-									<CarouselSlide slide={slides[2]} />
-								</div>
-								<div class="comment" class:show={demoStep >= 2}>
-									<span class="comment-avatar">J</span>
-									<p>Can slide 3 say "in minutes"?</p>
-								</div>
-								<button class="approve" class:approved={demoStep === 3} type="button" tabindex="-1">
-									{demoStep === 3 ? 'Approved ✓' : 'Approve'}
-								</button>
-							</div>
-						</div>
-
-						<div class="demo-track">
-							{#each ['Share', 'Copy link', 'Client opens', 'Approved'] as label, index}
-								<button
-									type="button"
-									class:on={demoStep === index}
-									aria-label={label}
-									aria-pressed={demoStep === index}
-									onclick={() => {
-										demoAuto = false;
-										demoStep = index;
-									}}
-								></button>
-							{/each}
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="wrap" id="formulas">
-			<div class="rail">
-				<div class="section-head">
-					<p class="eyebrow">Viral formulas</p>
-					<h2 class="display h2">Steal the format. <em>Keep your voice.</em></h2>
-					<p class="lead">
-						Every formula is a real carousel that earned its views, broken down slide by slide. Copy
-						the prompt, paste it into your agent and get the same structure with your idea.
-					</p>
-				</div>
-				<div class="formula-grid">
-					{#each formulas as formula}
-						<article class="formula">
-							<div class="formula-stage" aria-hidden="true">
-								<div class="formula-stack">
-									<div class="formula-mini f1">
-										<span></span><span class="accent"></span><span></span>
-									</div>
-									<div class="formula-mini f2">
-										<span></span><span class="accent"></span><span></span>
-									</div>
-									<div class="formula-mini f3">
-										<span></span><span class="accent"></span><span></span>
-									</div>
-								</div>
-							</div>
-							<div class="formula-body">
-								<p class="formula-meta">{formula.meta}</p>
-								<h3>{formula.name}</h3>
-								<p>{formula.line}</p>
-								<button
-									class="formula-copy"
-									type="button"
-									aria-label="Copy the {formula.name} prompt"
-									onclick={() => copy(formulaPrompt(formula.name), formula.name)}
-								>
-									{copied === formula.name ? 'Copied' : 'Copy prompt'}
-									{@render copyIcon()}
-								</button>
-							</div>
-						</article>
-					{/each}
-				</div>
-				<div class="formula-more">
-					<a class="text-link" href="https://easysociable.com/formulas">
-						Browse all 20 formulas {@render arrow()}
-					</a>
-				</div>
-			</div>
-		</section>
-
 		<!-- Placeholder social proof. Replace with real customer quotes and permission before publishing. -->
 		<section class="band" id="proof">
 			<div class="rail wrap">
@@ -832,17 +452,52 @@
 						The first teams using EasySociable stopped treating carousels like a design project.
 					</p>
 				</div>
-				<div class="quotes">
-					{#each quotes as quote}
-						<figure class="quote">
-							<blockquote>{quote.text}</blockquote>
-							<figcaption>
-								<span class="quote-avatar">{quote.initials}</span>
-								<span><strong>{quote.name}</strong><small>{quote.role}</small></span>
-							</figcaption>
-						</figure>
-					{/each}
+				<QuoteGrid {quotes} />
+			</div>
+		</section>
+
+		<section class="wrap" id="for">
+			<div class="rail">
+				<div class="section-head">
+					<p class="eyebrow">Start here</p>
+					<h2 class="display h2">Who is doing <em>the posting?</em></h2>
+					<p class="lead">
+						The studio is the same. The day around it is not. Pick the one that sounds like your
+						week.
+					</p>
 				</div>
+				<div class="personas">
+					<a class="persona creator" href={creatorPath}>
+						<span class="persona-tag">For creators</span>
+						<h3>I post every day.</h3>
+						<p class="persona-lead">
+							Proven formats, one Brand, and a carousel out the door before the coffee gets cold.
+						</p>
+						<ul>
+							<li>{@render checkIcon()}20 formats that already travel</li>
+							<li>{@render checkIcon()}One Brand, every platform size</li>
+							<li>{@render checkIcon()}Publish from your phone in two taps</li>
+						</ul>
+						<span class="door-arrow">See the creator path {@render arrow()}</span>
+					</a>
+					<a class="persona agency" href={agencyPath}>
+						<span class="persona-tag">For agencies</span>
+						<h3>I run client accounts.</h3>
+						<p class="persona-lead">
+							Every client Brand in one seat, review links clients can open, and usage that grows
+							with the roster.
+						</p>
+						<ul>
+							<li>{@render checkIcon()}Every client Brand in one studio</li>
+							<li>{@render checkIcon()}Review links, not PDFs</li>
+							<li>{@render checkIcon()}Usage that scales with the roster</li>
+						</ul>
+						<span class="door-arrow">See the agency path {@render arrow()}</span>
+					</a>
+				</div>
+				<p class="persona-note">
+					Not sure where you fit? Start the trial. Add Brands when the roster grows.
+				</p>
 			</div>
 		</section>
 
@@ -1023,10 +678,10 @@
 					<div>
 						<p class="footer-heading">Product</p>
 						<a href="#how">How it works</a>
-						<a href="https://easysociable.com/formulas">Viral formulas</a>
+						<a href="#for">Who it's for</a>
+						<a href={creatorPath}>For creators</a>
+						<a href={agencyPath}>For agencies</a>
 						<a href="#pricing">Pricing</a>
-						<a href="#share">Client review</a>
-						<a href="https://easysociable.com/compare">Compare</a>
 					</div>
 					<div>
 						<p class="footer-heading">Platforms</p>
@@ -1063,302 +718,6 @@
 </div>
 
 <style>
-	:global(html) {
-		--g50: #fbfaf9;
-		--g100: #ede9e8;
-		--g150: #ded9d8;
-		--g200: #d0c9c7;
-		--g300: #b3a9a7;
-		--g400: #988b88;
-		--g500: #7d6d6b;
-		--g600: #625653;
-		--g700: #493f3d;
-		--g800: #312928;
-		--g900: #1b1514;
-		--g950: #110c0b;
-		--roast-accent: #f5d76e;
-		--roast-accent-hover: #f0ca4b;
-		--roast-accent-soft: #fbf3d8;
-		--roast-accent-ink: #7a5a12;
-		background: var(--g50);
-		color-scheme: light;
-		scroll-behavior: smooth;
-		scroll-padding-top: 96px;
-	}
-
-	:global(html body) {
-		margin: 0;
-		background: var(--g50);
-		color: var(--g900);
-		color-scheme: light;
-		font-family:
-			Inter,
-			ui-sans-serif,
-			system-ui,
-			-apple-system,
-			'Segoe UI',
-			sans-serif;
-		font-size: 16px;
-		line-height: 1.5;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-	}
-
-	.page {
-		position: relative;
-		overflow-x: clip;
-		min-height: 100vh;
-		background: var(--g50);
-	}
-
-	:global(a) {
-		color: inherit;
-		text-decoration: none;
-	}
-
-	:global(button) {
-		margin: 0;
-		border: 0;
-		background: none;
-		color: inherit;
-		font: inherit;
-		cursor: pointer;
-	}
-
-	:global(img) {
-		display: block;
-		max-width: 100%;
-	}
-
-	:global(a:focus-visible),
-	:global(button:focus-visible),
-	:global(input:focus-visible),
-	:global(summary:focus-visible) {
-		outline: 2px solid var(--roast-accent-ink);
-		outline-offset: 3px;
-		border-radius: 6px;
-	}
-
-	.rail {
-		width: 100%;
-		max-width: 1200px;
-		margin-inline: auto;
-		padding-inline: clamp(20px, 4vw, 44px);
-	}
-
-	.wrap {
-		padding-block: clamp(72px, 8vw, 112px);
-	}
-
-	.band {
-		width: min(100% - 32px, 1280px);
-		margin-inline: auto;
-		border-radius: clamp(24px, 3vw, 40px);
-		background: var(--g100);
-	}
-
-	.band .wrap {
-		padding-block: clamp(56px, 6.4vw, 92px);
-	}
-
-	.display {
-		font-family: Fraunces, 'Iowan Old Style', Georgia, serif;
-		font-weight: 550;
-		font-optical-sizing: auto;
-	}
-
-	.eyebrow {
-		display: inline-flex;
-		align-items: center;
-		gap: 9px;
-		color: var(--g500);
-		font-size: 10.5px;
-		font-weight: 700;
-		letter-spacing: 0.18em;
-		text-transform: uppercase;
-	}
-
-	.eyebrow::before {
-		content: '';
-		width: 18px;
-		height: 2px;
-		border-radius: 2px;
-		background: var(--roast-accent);
-	}
-
-	.eyebrow.on-dark {
-		color: var(--g400);
-	}
-
-	.h1,
-	.h2 {
-		text-wrap: balance;
-	}
-
-	.h1 {
-		margin-top: 20px;
-		font-size: clamp(44px, 4.9vw, 68px);
-		line-height: 1.01;
-		letter-spacing: -0.045em;
-	}
-
-	.h2 {
-		margin-top: 14px;
-		font-size: clamp(34px, 3.6vw, 50px);
-		line-height: 1.06;
-		letter-spacing: -0.04em;
-	}
-
-	.h2 em {
-		font-style: normal;
-		color: var(--roast-accent-ink);
-	}
-
-	.lead {
-		max-width: 62ch;
-		margin-top: 18px;
-		color: var(--g600);
-		font-size: clamp(15.5px, 1.25vw, 18px);
-		line-height: 1.62;
-		text-wrap: pretty;
-	}
-
-	.section-head {
-		max-width: 720px;
-	}
-
-	.section-head.center {
-		max-width: 760px;
-		margin-inline: auto;
-		text-align: center;
-	}
-
-	.section-head.center .eyebrow {
-		justify-content: center;
-	}
-
-	.pill {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		gap: 8px;
-		height: 44px;
-		padding: 0 18px;
-		border-radius: 999px;
-		font-size: 13.5px;
-		font-weight: 650;
-		letter-spacing: -0.01em;
-		white-space: nowrap;
-		transition:
-			background 180ms ease,
-			color 180ms ease,
-			transform 180ms ease,
-			box-shadow 180ms ease;
-	}
-
-	.pill:active {
-		transform: translateY(1px);
-	}
-
-	.pill-sm {
-		height: 34px;
-		padding: 0 14px;
-		font-size: 12.5px;
-	}
-
-	.pill-lg {
-		height: 50px;
-		padding: 0 22px;
-		font-size: 14.5px;
-	}
-
-	.pill-accent {
-		background: var(--roast-accent);
-		color: #3d2c00;
-		box-shadow:
-			inset 0 1px 0 rgb(255 255 255 / 0.5),
-			0 10px 24px -12px rgb(166 118 0 / 0.55);
-	}
-
-	.pill-accent:hover {
-		background: var(--roast-accent-hover);
-	}
-
-	.pill-dark {
-		background: var(--g900);
-		color: var(--g50);
-	}
-
-	.pill-dark:hover {
-		background: var(--g800);
-	}
-
-	.pill-soft {
-		background: var(--g100);
-		color: var(--g900);
-	}
-
-	.pill-soft:hover {
-		background: var(--g150);
-	}
-
-	.pill-ghost {
-		background: var(--g50);
-		color: var(--g900);
-	}
-
-	.pill-ghost:hover {
-		background: var(--g150);
-	}
-
-	.pill-outline-dark {
-		background: rgb(255 255 255 / 0.07);
-		color: var(--g50);
-	}
-
-	.pill-outline-dark:hover {
-		background: rgb(255 255 255 / 0.13);
-	}
-
-	.text-link {
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-		color: var(--g800);
-		font-size: 13.5px;
-		font-weight: 650;
-		text-decoration: underline;
-		text-decoration-color: var(--g300);
-		text-underline-offset: 4px;
-		transition:
-			color 180ms ease,
-			text-decoration-color 180ms ease;
-	}
-
-	.text-link:hover {
-		color: var(--g900);
-		text-decoration-color: var(--roast-accent-ink);
-	}
-
-	.text-link.on-dark {
-		color: var(--g150);
-		text-decoration-color: var(--g600);
-	}
-
-	.text-link.on-dark:hover {
-		color: var(--g50);
-		text-decoration-color: var(--roast-accent);
-	}
-
-	.icon {
-		flex: none;
-		fill: none;
-		stroke: currentColor;
-		stroke-width: 1.6;
-		stroke-linecap: round;
-		stroke-linejoin: round;
-	}
-
 	/* Navigation */
 	.nav-wrap {
 		position: fixed;
@@ -1386,26 +745,6 @@
 			inset 0 1px 0 rgb(255 255 255 / 0.7);
 		-webkit-backdrop-filter: blur(18px) saturate(1.35);
 		backdrop-filter: blur(18px) saturate(1.35);
-	}
-
-	.brand {
-		display: inline-flex;
-		align-items: center;
-		gap: 9px;
-		font-size: 14px;
-		font-weight: 700;
-		letter-spacing: -0.025em;
-		white-space: nowrap;
-	}
-
-	.brand-mark {
-		display: grid;
-		place-items: center;
-		width: 27px;
-		height: 27px;
-		border-radius: 9px;
-		background: var(--roast-accent);
-		color: #3d2c00;
 	}
 
 	.nav-links {
@@ -1974,10 +1313,19 @@
 		flex-direction: column;
 		padding: clamp(26px, 2.8vw, 34px);
 		border-radius: 26px;
+		color: inherit;
+		transition:
+			transform 180ms ease,
+			box-shadow 180ms ease;
+	}
+
+	.persona:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 24px 50px -36px rgb(27 21 20 / 0.45);
 	}
 
 	.persona.creator {
-		background: var(--g50);
+		background: var(--g100);
 	}
 
 	.persona.agency {
@@ -1995,7 +1343,7 @@
 	}
 
 	.creator .persona-tag {
-		background: var(--g100);
+		background: var(--g50);
 		color: var(--g600);
 	}
 
@@ -2042,651 +1390,28 @@
 		stroke-width: 2;
 	}
 
-	.persona .pill {
-		align-self: flex-start;
-		margin-top: 26px;
+	.door-arrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		margin-top: 24px;
+		color: var(--roast-accent-ink);
+		font-size: 13px;
+		font-weight: 650;
+	}
+
+	.door-arrow .icon {
+		transition: transform 180ms ease;
+	}
+
+	.persona:hover .door-arrow .icon {
+		transform: translateX(3px);
 	}
 
 	.persona-note {
 		margin-top: 18px;
 		color: var(--g500);
 		font-size: 12.5px;
-	}
-
-	/* Brands */
-	.brand-layout {
-		display: grid;
-		grid-template-columns: 0.9fr 1.1fr;
-		gap: clamp(28px, 4vw, 64px);
-		align-items: center;
-	}
-
-	.brand-small {
-		margin-top: 14px;
-		color: var(--g500);
-		font-size: 13px;
-	}
-
-	.brand-copy .text-link {
-		margin-top: 24px;
-	}
-
-	.brand-stage {
-		padding: clamp(22px, 2.6vw, 30px);
-		border-radius: 30px;
-		background: var(--g100);
-	}
-
-	.brand-toggle {
-		display: flex;
-		justify-content: center;
-		gap: 4px;
-		padding: 4px;
-		border-radius: 999px;
-		background: var(--g150);
-		width: fit-content;
-		margin-inline: auto;
-	}
-
-	.brand-toggle button {
-		display: inline-flex;
-		align-items: center;
-		gap: 7px;
-		padding: 5px 11px 5px 5px;
-		border-radius: 999px;
-		color: var(--g600);
-		font-size: 11.5px;
-		font-weight: 600;
-		transition:
-			background 200ms ease,
-			color 200ms ease,
-			box-shadow 200ms ease;
-	}
-
-	.brand-toggle .mono {
-		display: grid;
-		place-items: center;
-		width: 24px;
-		height: 24px;
-		border-radius: 50%;
-		background: var(--g100);
-		color: var(--g700);
-		font-size: 9.5px;
-		font-weight: 700;
-		transition:
-			background 200ms ease,
-			color 200ms ease;
-	}
-
-	.brand-toggle button.active {
-		background: var(--g50);
-		color: var(--g900);
-		box-shadow: 0 5px 14px -8px rgb(27 21 20 / 0.3);
-	}
-
-	.brand-toggle button.active .mono {
-		background: var(--roast-accent);
-		color: #3d2c00;
-	}
-
-	.brand-covers {
-		position: relative;
-		width: min(100%, 400px);
-		aspect-ratio: 4 / 5;
-		margin: 28px auto 0;
-	}
-
-	.brand-covers::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		z-index: 0;
-		border-radius: 20px;
-		background: var(--roast-accent);
-		transform: rotate(3deg);
-	}
-
-	.cover {
-		position: absolute;
-		inset: 0;
-		z-index: 1;
-		overflow: hidden;
-		border-radius: 20px;
-		box-shadow: 0 26px 50px -34px rgb(27 21 20 / 0.55);
-		opacity: 0;
-		transform: rotate(var(--tilt)) scale(0.96);
-		transition:
-			opacity 380ms ease,
-			transform 380ms cubic-bezier(0.2, 0.7, 0.2, 1);
-	}
-
-	.cover.front {
-		opacity: 1;
-		transform: rotate(var(--tilt)) scale(1);
-	}
-
-	.cover :global(.slide) {
-		border-radius: 20px;
-	}
-
-	.brand-caption {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 7px;
-		margin-top: 18px;
-		color: var(--g500);
-		font-size: 12px;
-		font-weight: 550;
-	}
-
-	.brand-caption .icon {
-		color: var(--roast-accent-ink);
-		stroke-width: 2;
-	}
-
-	/* Share */
-	.share-layout {
-		display: grid;
-		grid-template-columns: 0.9fr 1.1fr;
-		gap: clamp(32px, 4vw, 64px);
-		align-items: center;
-	}
-
-	.mini-list {
-		display: grid;
-		gap: 10px;
-		margin-top: 22px;
-	}
-
-	.mini-list li {
-		display: flex;
-		gap: 9px;
-		align-items: flex-start;
-		color: var(--g700);
-		font-size: 13.5px;
-		line-height: 1.45;
-	}
-
-	.mini-list .icon {
-		margin-top: 2px;
-		color: var(--roast-accent-ink);
-		stroke-width: 2;
-	}
-
-	.share-copy .text-link {
-		margin-top: 24px;
-	}
-
-	.share-demo {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 12px;
-		align-items: stretch;
-		justify-items: center;
-	}
-
-	.phone {
-		display: flex;
-		width: 100%;
-		max-width: 268px;
-		padding: 6px;
-		border-radius: 36px;
-		background: var(--g900);
-		box-shadow: 0 32px 60px -44px rgb(27 21 20 / 0.65);
-	}
-
-	.phone-screen {
-		display: flex;
-		flex: 1;
-		flex-direction: column;
-		overflow: hidden;
-		padding: 9px;
-		border-radius: 30px;
-		background: var(--g50);
-	}
-
-	.phone-client .approve {
-		margin-top: auto;
-	}
-
-	.phone-status {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 3px 7px 7px;
-		color: var(--g900);
-		font-size: 8.5px;
-		font-weight: 700;
-	}
-
-	.status-dots {
-		width: 26px;
-		height: 5px;
-		border-radius: 3px;
-		background: var(--g300);
-	}
-
-	.mini-carousel {
-		position: relative;
-		overflow: hidden;
-		border-radius: 13px;
-	}
-
-	.mini-counter {
-		position: absolute;
-		top: 7px;
-		right: 7px;
-		padding: 2px 6px;
-		border-radius: 999px;
-		background: rgb(17 12 11 / 0.55);
-		color: #fff;
-		font-size: 7.5px;
-		font-weight: 600;
-	}
-
-	.sheet {
-		margin-top: 8px;
-		padding: 10px;
-		border-radius: 14px;
-		background: var(--g100);
-	}
-
-	.sheet-title {
-		font-size: 9.5px;
-		font-weight: 700;
-		letter-spacing: -0.01em;
-	}
-
-	.perm-row {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 4.5px 0;
-		color: var(--g600);
-		font-size: 8.5px;
-	}
-
-	.switch {
-		position: relative;
-		width: 22px;
-		height: 13px;
-		border-radius: 999px;
-		background: var(--g300);
-	}
-
-	.switch::after {
-		content: '';
-		position: absolute;
-		top: 2px;
-		left: 2px;
-		width: 9px;
-		height: 9px;
-		border-radius: 50%;
-		background: var(--g50);
-		transition: left 200ms ease;
-	}
-
-	.switch.on {
-		background: var(--roast-accent);
-	}
-
-	.switch.on::after {
-		left: 11px;
-		background: #3d2c00;
-	}
-
-	.sheet-link {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 6px;
-		margin-top: 6px;
-		padding: 6px 8px;
-		border-radius: 8px;
-		background: var(--g50);
-		color: var(--g600);
-		font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-		font-size: 7.5px;
-	}
-
-	.copied {
-		color: var(--roast-accent-ink);
-		font-family: Inter, sans-serif;
-		font-weight: 700;
-	}
-
-	.sheet-pill {
-		width: 100%;
-		height: 26px;
-		margin-top: 7px;
-		border-radius: 8px;
-		background: var(--g900);
-		color: var(--g50);
-		font-size: 8.5px;
-		font-weight: 650;
-		transition:
-			background 220ms ease,
-			color 220ms ease;
-	}
-
-	.sheet-pill.active {
-		background: var(--roast-accent);
-		color: #3d2c00;
-	}
-
-	.client-head {
-		display: flex;
-		gap: 7px;
-		align-items: center;
-		padding: 2px 4px 8px;
-		color: var(--g800);
-		font-size: 8.5px;
-		font-weight: 600;
-	}
-
-	.client-avatar {
-		display: grid;
-		place-items: center;
-		width: 20px;
-		height: 20px;
-		border-radius: 50%;
-		background: var(--roast-accent);
-		color: #3d2c00;
-		font-size: 8px;
-		font-weight: 700;
-	}
-
-	.client-head small {
-		display: block;
-		color: var(--g500);
-		font-size: 7.5px;
-		font-weight: 500;
-	}
-
-	.comment {
-		display: flex;
-		gap: 6px;
-		align-items: flex-start;
-		margin-top: 8px;
-		opacity: 0;
-		transform: translateY(4px);
-		transition:
-			opacity 280ms ease,
-			transform 280ms ease;
-	}
-
-	.comment.show {
-		opacity: 1;
-		transform: none;
-	}
-
-	.comment-avatar {
-		display: grid;
-		flex: none;
-		place-items: center;
-		width: 18px;
-		height: 18px;
-		border-radius: 50%;
-		background: var(--g200);
-		color: var(--g700);
-		font-size: 7px;
-		font-weight: 700;
-	}
-
-	.comment p {
-		padding: 6px 8px;
-		border-radius: 10px 10px 10px 3px;
-		background: var(--g100);
-		color: var(--g700);
-		font-size: 8px;
-		line-height: 1.35;
-	}
-
-	.approve {
-		width: 100%;
-		height: 26px;
-		margin-top: 8px;
-		border-radius: 8px;
-		background: var(--g900);
-		color: var(--g50);
-		font-size: 8.5px;
-		font-weight: 650;
-		transition:
-			background 260ms ease,
-			color 260ms ease;
-	}
-
-	.approve.approved {
-		background: var(--roast-accent);
-		color: #3d2c00;
-	}
-
-	.demo-track {
-		grid-column: 1 / -1;
-		display: flex;
-		justify-content: center;
-		gap: 6px;
-		margin-top: 4px;
-	}
-
-	.demo-track button {
-		width: 8px;
-		height: 8px;
-		border-radius: 999px;
-		background: var(--g300);
-		transition:
-			width 220ms ease,
-			background 220ms ease;
-	}
-
-	.demo-track button.on {
-		width: 22px;
-		background: var(--roast-accent-ink);
-	}
-
-	/* Formulas */
-	.formula-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 16px;
-		margin-top: 44px;
-	}
-
-	.formula {
-		display: flex;
-		flex-direction: column;
-		overflow: hidden;
-		border-radius: 22px;
-		background: var(--g100);
-		transition:
-			transform 240ms ease,
-			box-shadow 240ms ease;
-	}
-
-	.formula:hover {
-		transform: translateY(-3px);
-		box-shadow: 0 28px 50px -44px rgb(27 21 20 / 0.55);
-	}
-
-	.formula-stage {
-		display: grid;
-		place-items: center;
-		height: 170px;
-		overflow: hidden;
-		background: var(--g150);
-	}
-
-	.formula-stack {
-		position: relative;
-		width: 102px;
-		height: 128px;
-	}
-
-	.formula-mini {
-		position: absolute;
-		inset: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 6px;
-		padding: 9px;
-		border-radius: 9px;
-		background: var(--g50);
-		box-shadow: 0 8px 20px -14px rgb(27 21 20 / 0.45);
-		transition: transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
-	}
-
-	.formula-mini span {
-		display: block;
-		height: 4px;
-		border-radius: 3px;
-		background: var(--g200);
-	}
-
-	.formula-mini span:first-child {
-		width: 58%;
-		height: 8px;
-		background: var(--g800);
-	}
-
-	.formula-mini span.accent {
-		width: 42%;
-		height: 6px;
-		background: var(--roast-accent);
-	}
-
-	.f1 {
-		transform: rotate(-8deg) translateX(-18px);
-	}
-
-	.f2 {
-		z-index: 2;
-		transform: translateY(-4px);
-	}
-
-	.f3 {
-		transform: rotate(8deg) translateX(18px);
-	}
-
-	.formula:hover .f1 {
-		transform: rotate(-12deg) translateX(-26px) translateY(-2px);
-	}
-
-	.formula:hover .f3 {
-		transform: rotate(12deg) translateX(26px) translateY(-2px);
-	}
-
-	.formula-body {
-		display: flex;
-		flex: 1;
-		flex-direction: column;
-		padding: 20px 22px 22px;
-	}
-
-	.formula-meta {
-		color: var(--g500);
-		font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-		font-size: 9.5px;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-	}
-
-	.formula h3 {
-		margin-top: 8px;
-		font-size: 17px;
-		font-weight: 650;
-		letter-spacing: -0.025em;
-	}
-
-	.formula-body > p {
-		margin-top: 6px;
-		color: var(--g600);
-		font-size: 13px;
-		line-height: 1.5;
-	}
-
-	.formula-copy {
-		display: inline-flex;
-		align-items: center;
-		gap: 7px;
-		align-self: flex-start;
-		height: 34px;
-		margin-top: 18px;
-		padding: 0 12px;
-		border-radius: 999px;
-		background: var(--g50);
-		color: var(--g900);
-		font-size: 12px;
-		font-weight: 650;
-		transition:
-			background 180ms ease,
-			color 180ms ease;
-	}
-
-	.formula-copy:hover {
-		background: var(--roast-accent);
-		color: #3d2c00;
-	}
-
-	.formula-more {
-		margin-top: 28px;
-		text-align: center;
-	}
-
-	/* Quotes */
-	.quotes {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 16px;
-		margin-top: 44px;
-	}
-
-	.quote {
-		display: flex;
-		flex-direction: column;
-		padding: 26px;
-		border-radius: 22px;
-		background: var(--g50);
-	}
-
-	.quote blockquote {
-		color: var(--g800);
-		font-size: 14.5px;
-		line-height: 1.55;
-		text-wrap: pretty;
-	}
-
-	.quote figcaption {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		margin-top: auto;
-		padding-top: 24px;
-	}
-
-	.quote-avatar {
-		display: grid;
-		flex: none;
-		place-items: center;
-		width: 32px;
-		height: 32px;
-		border-radius: 50%;
-		background: var(--g150);
-		color: var(--g700);
-		font-size: 10.5px;
-		font-weight: 700;
-	}
-
-	.quote figcaption strong {
-		display: block;
-		font-size: 12px;
-		font-weight: 650;
-	}
-
-	.quote figcaption small {
-		display: block;
-		color: var(--g500);
-		font-size: 11px;
 	}
 
 	/* Pricing */
@@ -3174,10 +1899,6 @@
 			grid-template-columns: repeat(2, 1fr);
 		}
 
-		.formula-grid {
-			grid-template-columns: repeat(2, 1fr);
-		}
-
 		.footer-top {
 			grid-template-columns: 1fr;
 			gap: 44px;
@@ -3212,37 +1933,13 @@
 
 		.compare,
 		.personas,
-		.brand-layout,
-		.share-layout,
 		.faq-layout,
 		.price-grid {
 			grid-template-columns: 1fr;
 		}
 
-		.brand-layout {
-			gap: 36px;
-		}
-
-		.brand-stage {
-			width: min(100%, 540px);
-			margin-inline: auto;
-		}
-
-		.share-demo {
-			width: min(100%, 560px);
-			margin-inline: auto;
-		}
-
 		.faq-head {
 			position: static;
-		}
-
-		.quotes {
-			grid-template-columns: 1fr;
-		}
-
-		.quote blockquote {
-			font-size: 15px;
 		}
 
 		.final {
@@ -3266,8 +1963,7 @@
 	}
 
 	@media (max-width: 620px) {
-		.how-steps,
-		.formula-grid {
+		.how-steps {
 			grid-template-columns: 1fr;
 		}
 
@@ -3281,19 +1977,6 @@
 
 		.stage-chip {
 			display: none;
-		}
-
-		.phone {
-			max-width: 250px;
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		:global(*) {
-			animation-duration: 0.01ms !important;
-			animation-iteration-count: 1 !important;
-			transition-duration: 0.01ms !important;
-			scroll-behavior: auto !important;
 		}
 	}
 </style>
