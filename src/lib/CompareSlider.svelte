@@ -38,6 +38,17 @@
 		position = Math.min(100, Math.max(0, next));
 	}
 
+	/** The divider's grab strip covers both pages beside the line, so its wheel scrolls the page under the cursor. */
+	function onwheel(event: WheelEvent) {
+		const { left, width } = stage.getBoundingClientRect();
+		const frame = event.clientX < left + (width * position) / 100 ? before : after;
+		const win = frame.contentWindow;
+		if (!win) return;
+		// Deltas come in pixels, lines (Firefox's mouse wheel), or pages.
+		const unit = [1, 16, win.innerHeight][event.deltaMode];
+		win.scrollBy({ left: event.deltaX * unit, top: event.deltaY * unit, behavior: 'instant' });
+	}
+
 	/** Scrolls the other frame to the same share of its height. */
 	function mirror(from: HTMLIFrameElement) {
 		if (echo === from.contentWindow) {
@@ -90,8 +101,8 @@
 		{@attach frame}
 	></iframe>
 
-	<span class="label" class:hidden={position < 12} style:left="24px">Before</span>
-	<span class="label" class:hidden={position > 88} style:right="24px">After</span>
+	<span class="label before" class:hidden={position < 12}>Before</span>
+	<span class="label after" class:hidden={position > 88}>After</span>
 
 	<div
 		class="divider"
@@ -111,6 +122,8 @@
 		onpointermove={(event) => dragging && moveTo(event.clientX)}
 		onpointerup={() => (dragging = false)}
 		onpointercancel={() => (dragging = false)}
+		onlostpointercapture={() => (dragging = false)}
+		{onwheel}
 		{onkeydown}
 	>
 		<span class="knob">
@@ -137,7 +150,7 @@
 		border: 0;
 	}
 
-	.after {
+	iframe.after {
 		clip-path: inset(0 0 0 var(--x));
 	}
 
@@ -153,16 +166,23 @@
 		height: 30px;
 		padding: 0 12px;
 		border-radius: 999px;
-		background: color-mix(in srgb, var(--surface-root) 82%, transparent);
-		backdrop-filter: blur(12px) saturate(1.4);
-		box-shadow:
-			0 0 0 1px var(--ring-faint),
-			0 2px 8px rgb(0 0 0 / 0.16);
-		color: var(--fg-default);
+		box-shadow: 0 2px 8px rgb(0 0 0 / 0.16);
+		color: #ffffff;
 		font-size: 13px;
 		font-weight: 500;
 		pointer-events: none;
 		transition: opacity 180ms;
+	}
+
+	/* The two ends of the brand painting: its red for the site as it was, its blue for the page it became. */
+	.label.before {
+		left: 24px;
+		background: color-mix(in srgb, #ed3e11, black 10%);
+	}
+
+	.label.after {
+		right: 24px;
+		background: var(--brand);
 	}
 
 	.hidden {
@@ -186,10 +206,10 @@
 		content: '';
 		position: absolute;
 		inset-block: 0;
-		left: 21px;
-		width: 2px;
+		left: 22px;
+		width: 1px;
 		background: var(--surface-inverse);
-		box-shadow: 0 0 0 1px color-mix(in srgb, var(--surface-root) 50%, transparent);
+		box-shadow: 0 0 2px color-mix(in srgb, var(--surface-root) 60%, transparent);
 	}
 
 	.knob {
