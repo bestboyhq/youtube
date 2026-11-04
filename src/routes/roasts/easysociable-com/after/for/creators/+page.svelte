@@ -310,11 +310,7 @@
 		width: min(88%, 430px);
 		aspect-ratio: 1;
 		border-radius: 50%;
-		background: radial-gradient(
-			circle at 50% 45%,
-			var(--roast-accent-soft),
-			rgb(251 243 216 / 0) 70%
-		);
+		background: radial-gradient(circle at 50% 45%, var(--roast-accent-soft), rgb(58 49 25 / 0) 70%);
 	}
 
 	.fan-slide {
@@ -349,13 +345,13 @@
 		gap: 7px;
 		padding: 8px 13px;
 		border-radius: 999px;
-		background: var(--g50);
+		background: var(--g150);
 		color: var(--g700);
 		font-size: 11.5px;
 		font-weight: 600;
 		white-space: nowrap;
 		translate: -50% 0;
-		box-shadow: 0 14px 30px -22px rgb(27 21 20 / 0.45);
+		box-shadow: 0 14px 30px -22px rgb(0 0 0 / 0.7);
 	}
 
 	.fan-chip::before {
@@ -454,8 +450,9 @@
 		gap: 5px;
 		padding: 10px 9px;
 		border-radius: 10px;
-		background: var(--g50);
-		box-shadow: 0 14px 30px -24px rgb(27 21 20 / 0.5);
+		background: var(--paper);
+		color: var(--paper-ink);
+		box-shadow: 0 14px 30px -24px rgb(0 0 0 / 0.7);
 	}
 
 	.r45 {
@@ -483,7 +480,7 @@
 		width: 100%;
 		height: 3px;
 		border-radius: 2px;
-		background: var(--g200);
+		background: var(--paper-3);
 	}
 
 	.rack-frame i.acc {
@@ -495,12 +492,12 @@
 		flex: 1;
 		margin-top: 5px;
 		border-radius: 6px;
-		background: var(--g100);
+		background: var(--paper-2);
 	}
 
 	.rack-foot {
 		margin-top: auto;
-		color: var(--g400);
+		color: var(--paper-muted);
 		font-size: 5.5px;
 		font-weight: 700;
 		letter-spacing: 0.12em;
@@ -526,9 +523,9 @@
 		margin-inline: auto;
 		padding: clamp(18px, 2.4vw, 24px);
 		border-radius: 28px;
-		background: var(--g900);
-		color: var(--g50);
-		box-shadow: 0 34px 64px -48px rgb(27 21 20 / 0.7);
+		background: var(--g150);
+		color: var(--g900);
+		box-shadow: 0 34px 64px -48px rgb(0 0 0 / 0.85);
 	}
 
 	.publish-top {
@@ -549,7 +546,7 @@
 		padding: 4px 9px;
 		border-radius: 999px;
 		background: rgb(255 255 255 / 0.1);
-		color: var(--g300);
+		color: var(--g500);
 		font-size: 9px;
 		font-weight: 700;
 		letter-spacing: 0.12em;
@@ -581,7 +578,7 @@
 		height: 24px;
 		border-radius: 8px;
 		background: rgb(255 255 255 / 0.1);
-		color: var(--g100);
+		color: var(--g900);
 		font-size: 8px;
 		font-weight: 700;
 	}

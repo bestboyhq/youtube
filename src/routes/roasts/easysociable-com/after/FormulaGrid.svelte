@@ -145,8 +145,8 @@
 		gap: 6px;
 		padding: 9px;
 		border-radius: 9px;
-		background: var(--g50);
-		box-shadow: 0 8px 20px -14px rgb(27 21 20 / 0.45);
+		background: var(--paper);
+		box-shadow: 0 8px 20px -14px rgb(0 0 0 / 0.7);
 		transition: transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
 	}
 
@@ -154,13 +154,13 @@
 		display: block;
 		height: 4px;
 		border-radius: 3px;
-		background: var(--g200);
+		background: var(--paper-3);
 	}
 
 	.formula-mini span:first-child {
 		width: 58%;
 		height: 8px;
-		background: var(--g800);
+		background: var(--paper-ink);
 	}
 
 	.formula-mini span.accent {

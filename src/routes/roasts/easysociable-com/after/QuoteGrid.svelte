@@ -38,7 +38,7 @@
 		flex-direction: column;
 		padding: 26px;
 		border-radius: 22px;
-		background: var(--g50);
+		background: var(--g150);
 	}
 
 	.quote blockquote {
@@ -63,7 +63,7 @@
 		width: 32px;
 		height: 32px;
 		border-radius: 50%;
-		background: var(--g150);
+		background: var(--g200);
 		color: var(--g700);
 		font-size: 10.5px;
 		font-weight: 700;

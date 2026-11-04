@@ -739,10 +739,10 @@
 		width: min(100%, 1160px);
 		padding: 9px 10px 9px 16px;
 		border-radius: 999px;
-		background: rgb(251 250 249 / 0.78);
+		background: rgb(38 34 30 / 0.72);
 		box-shadow:
-			0 12px 34px -22px rgb(27 21 20 / 0.45),
-			inset 0 1px 0 rgb(255 255 255 / 0.7);
+			0 12px 34px -22px rgb(0 0 0 / 0.8),
+			inset 0 1px 0 rgb(255 255 255 / 0.06);
 		-webkit-backdrop-filter: blur(18px) saturate(1.35);
 		backdrop-filter: blur(18px) saturate(1.35);
 	}
@@ -815,8 +815,8 @@
 		width: min(100%, 1160px);
 		padding: 10px;
 		border-radius: 24px;
-		background: rgb(251 250 249 / 0.97);
-		box-shadow: 0 24px 60px -30px rgb(27 21 20 / 0.45);
+		background: rgb(38 34 30 / 0.97);
+		box-shadow: 0 24px 60px -30px rgb(0 0 0 / 0.8);
 		-webkit-backdrop-filter: blur(18px);
 		backdrop-filter: blur(18px);
 	}
@@ -856,23 +856,9 @@
 	}
 
 	.mark {
-		position: relative;
 		display: inline-block;
-		z-index: 0;
+		color: var(--roast-accent);
 		white-space: nowrap;
-	}
-
-	.mark::after {
-		content: '';
-		position: absolute;
-		z-index: -1;
-		left: -0.05em;
-		right: -0.05em;
-		bottom: 0.08em;
-		height: 0.32em;
-		border-radius: 0.06em;
-		background: var(--roast-accent);
-		transform: rotate(-1.3deg);
 	}
 
 	.hero-actions {
@@ -920,8 +906,8 @@
 		position: relative;
 		border-radius: 32px;
 		padding: clamp(18px, 2.2vw, 26px);
-		background: radial-gradient(120% 100% at 18% 0%, #fbf2d8 0%, #f4e7c4 52%, #efe0cb 100%);
-		box-shadow: 0 42px 80px -56px rgb(61 44 0 / 0.5);
+		background: radial-gradient(120% 100% at 18% 0%, #3b3019 0%, #302a23 52%, #2a2520 100%);
+		box-shadow: 0 42px 90px -56px rgb(0 0 0 / 0.9);
 	}
 
 	.studio {
@@ -972,8 +958,8 @@
 		margin: 10px 12px 0;
 		padding: 12px 14px;
 		border-radius: 16px;
-		background: var(--g900);
-		color: var(--g150);
+		background: #1e1a16;
+		color: var(--g900);
 	}
 
 	.agent-prompt {
@@ -1002,7 +988,7 @@
 		padding: 3px 8px;
 		border-radius: 999px;
 		background: rgb(255 255 255 / 0.08);
-		color: var(--g300);
+		color: var(--g500);
 		font-size: 9px;
 		font-weight: 600;
 	}
@@ -1054,8 +1040,8 @@
 		bottom: 24px;
 		padding: 7px 11px;
 		border-radius: 10px;
-		background: var(--g50);
-		box-shadow: 0 12px 24px -16px rgb(61 44 0 / 0.5);
+		background: var(--g150);
+		box-shadow: 0 12px 24px -16px rgb(0 0 0 / 0.8);
 		color: var(--g800);
 		font-size: 11px;
 		font-weight: 650;
@@ -1076,12 +1062,12 @@
 	}
 
 	.compare-card.old {
-		background: var(--g150);
+		background: var(--g50);
 	}
 
 	.compare-card.new {
-		background: var(--g50);
-		box-shadow: 0 24px 50px -44px rgb(27 21 20 / 0.45);
+		background: var(--g150);
+		box-shadow: 0 24px 50px -44px rgb(0 0 0 / 0.8);
 	}
 
 	.compare-label {
@@ -1198,8 +1184,8 @@
 		margin-top: 14px;
 		padding: clamp(28px, 3.4vw, 44px);
 		border-radius: 28px;
-		background: var(--g900);
-		color: var(--g50);
+		background: var(--g150);
+		color: var(--g900);
 	}
 
 	.agent-copy h3 {
@@ -1214,7 +1200,7 @@
 	.agent-copy > p {
 		max-width: 52ch;
 		margin-top: 12px;
-		color: var(--g300);
+		color: var(--g500);
 		font-size: 14px;
 		line-height: 1.6;
 	}
@@ -1230,7 +1216,7 @@
 		padding: 5px 10px;
 		border-radius: 999px;
 		background: rgb(255 255 255 / 0.07);
-		color: var(--g300);
+		color: var(--g500);
 		font-size: 10.5px;
 		font-weight: 600;
 	}
@@ -1242,7 +1228,7 @@
 	.agent-terminal {
 		padding: 16px;
 		border-radius: 18px;
-		background: var(--g950);
+		background: #1e1a16;
 		font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 		font-size: 11px;
 		line-height: 1.85;
@@ -1271,7 +1257,7 @@
 	}
 
 	.terminal-body p {
-		color: var(--g300);
+		color: var(--g500);
 	}
 
 	.t-prompt,
@@ -1556,8 +1542,8 @@
 	.save-badge {
 		padding: 4px 9px;
 		border-radius: 999px;
-		background: var(--g900);
-		color: var(--roast-accent);
+		background: var(--roast-accent);
+		color: #3d2c00;
 		font-size: 9.5px;
 		font-weight: 700;
 	}
@@ -1665,7 +1651,7 @@
 
 	.faq-item {
 		border-radius: 16px;
-		background: var(--g50);
+		background: var(--g150);
 	}
 
 	.faq-item summary {
@@ -1744,8 +1730,8 @@
 		overflow: hidden;
 		padding: clamp(36px, 4.2vw, 60px);
 		border-radius: 32px;
-		background: var(--g900);
-		color: var(--g50);
+		background: var(--g150);
+		color: var(--g900);
 	}
 
 	.final::before {
@@ -1756,7 +1742,7 @@
 		width: 440px;
 		height: 440px;
 		border-radius: 50%;
-		background: radial-gradient(circle, rgb(245 215 110 / 0.2), transparent 66%);
+		background: radial-gradient(circle, rgb(255 231 163 / 0.16), transparent 66%);
 		pointer-events: none;
 	}
 
@@ -1776,7 +1762,7 @@
 	.final-copy > p {
 		max-width: 46ch;
 		margin-top: 14px;
-		color: var(--g300);
+		color: var(--g500);
 		font-size: 14.5px;
 		line-height: 1.6;
 	}

@@ -93,8 +93,8 @@
 		max-width: 268px;
 		padding: 6px;
 		border-radius: 36px;
-		background: var(--g900);
-		box-shadow: 0 32px 60px -44px rgb(27 21 20 / 0.65);
+		background: var(--g200);
+		box-shadow: 0 32px 60px -44px rgb(0 0 0 / 0.9);
 	}
 
 	.phone-screen {
@@ -104,7 +104,8 @@
 		overflow: hidden;
 		padding: 9px;
 		border-radius: 30px;
-		background: var(--g50);
+		background: var(--paper);
+		color: var(--paper-ink);
 	}
 
 	.phone-client .approve {
@@ -116,7 +117,7 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 3px 7px 7px;
-		color: var(--g900);
+		color: var(--paper-ink);
 		font-size: 8.5px;
 		font-weight: 700;
 	}
@@ -125,7 +126,7 @@
 		width: 26px;
 		height: 5px;
 		border-radius: 3px;
-		background: var(--g300);
+		background: var(--paper-3);
 	}
 
 	.mini-carousel {
@@ -150,7 +151,7 @@
 		margin-top: 8px;
 		padding: 10px;
 		border-radius: 14px;
-		background: var(--g100);
+		background: var(--paper-2);
 	}
 
 	.sheet-title {
@@ -164,7 +165,7 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 4.5px 0;
-		color: var(--g600);
+		color: var(--paper-muted);
 		font-size: 8.5px;
 	}
 
@@ -173,7 +174,7 @@
 		width: 22px;
 		height: 13px;
 		border-radius: 999px;
-		background: var(--g300);
+		background: var(--paper-3);
 	}
 
 	.switch::after {
@@ -184,7 +185,7 @@
 		width: 9px;
 		height: 9px;
 		border-radius: 50%;
-		background: var(--g50);
+		background: var(--paper);
 		transition: left 200ms ease;
 	}
 
@@ -205,8 +206,8 @@
 		margin-top: 6px;
 		padding: 6px 8px;
 		border-radius: 8px;
-		background: var(--g50);
-		color: var(--g600);
+		background: var(--paper);
+		color: var(--paper-muted);
 		font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 		font-size: 7.5px;
 	}
@@ -222,8 +223,8 @@
 		height: 26px;
 		margin-top: 7px;
 		border-radius: 8px;
-		background: var(--g900);
-		color: var(--g50);
+		background: var(--paper-ink);
+		color: var(--paper);
 		font-size: 8.5px;
 		font-weight: 650;
 		transition:
@@ -241,7 +242,7 @@
 		gap: 7px;
 		align-items: center;
 		padding: 2px 4px 8px;
-		color: var(--g800);
+		color: var(--paper-ink);
 		font-size: 8.5px;
 		font-weight: 600;
 	}
@@ -289,8 +290,8 @@
 		width: 18px;
 		height: 18px;
 		border-radius: 50%;
-		background: var(--g200);
-		color: var(--g700);
+		background: var(--paper-3);
+		color: var(--paper-ink);
 		font-size: 7px;
 		font-weight: 700;
 	}
@@ -298,8 +299,8 @@
 	.comment p {
 		padding: 6px 8px;
 		border-radius: 10px 10px 10px 3px;
-		background: var(--g100);
-		color: var(--g700);
+		background: var(--paper-2);
+		color: var(--paper-muted);
 		font-size: 8px;
 		line-height: 1.35;
 	}
@@ -309,8 +310,8 @@
 		height: 26px;
 		margin-top: 8px;
 		border-radius: 8px;
-		background: var(--g900);
-		color: var(--g50);
+		background: var(--paper-ink);
+		color: var(--paper);
 		font-size: 8.5px;
 		font-weight: 650;
 		transition:

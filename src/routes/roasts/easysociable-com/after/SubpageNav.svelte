@@ -71,10 +71,10 @@
 		margin-inline: auto;
 		padding: 9px 10px 9px 16px;
 		border-radius: 999px;
-		background: rgb(251 250 249 / 0.82);
+		background: rgb(38 34 30 / 0.72);
 		box-shadow:
-			0 12px 34px -22px rgb(27 21 20 / 0.45),
-			inset 0 1px 0 rgb(255 255 255 / 0.7);
+			0 12px 34px -22px rgb(0 0 0 / 0.8),
+			inset 0 1px 0 rgb(255 255 255 / 0.06);
 		-webkit-backdrop-filter: blur(18px) saturate(1.35);
 		backdrop-filter: blur(18px) saturate(1.35);
 	}
@@ -148,8 +148,8 @@
 		margin-inline: auto;
 		padding: 10px;
 		border-radius: 24px;
-		background: rgb(251 250 249 / 0.97);
-		box-shadow: 0 24px 60px -30px rgb(27 21 20 / 0.45);
+		background: rgb(38 34 30 / 0.97);
+		box-shadow: 0 24px 60px -30px rgb(0 0 0 / 0.8);
 		-webkit-backdrop-filter: blur(18px);
 		backdrop-filter: blur(18px);
 	}

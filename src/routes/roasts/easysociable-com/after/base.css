@@ -1,22 +1,27 @@
 html {
-	--g50: #fbfaf9;
-	--g100: #ede9e8;
-	--g150: #ded9d8;
-	--g200: #d0c9c7;
-	--g300: #b3a9a7;
-	--g400: #988b88;
-	--g500: #7d6d6b;
-	--g600: #625653;
-	--g700: #493f3d;
-	--g800: #312928;
-	--g900: #1b1514;
-	--g950: #110c0b;
-	--roast-accent: #f5d76e;
-	--roast-accent-hover: #f0ca4b;
-	--roast-accent-soft: #fbf3d8;
-	--roast-accent-ink: #7a5a12;
+	--g50: #26221e;
+	--g100: #2f2a24;
+	--g150: #383229;
+	--g200: #453e35;
+	--g300: #8d8274;
+	--g400: #a19787;
+	--g500: #b8ad9d;
+	--g600: #ccc2b2;
+	--g700: #ddd4c5;
+	--g800: #e8dfd1;
+	--g900: #f2ebdd;
+	--g950: #faf5ea;
+	--roast-accent: #ffe7a3;
+	--roast-accent-hover: #f6d98c;
+	--roast-accent-soft: #3a3119;
+	--roast-accent-ink: #ffe7a3;
+	--paper: #fdfaf1;
+	--paper-2: #f4efe3;
+	--paper-3: #e5e0d9;
+	--paper-ink: #322201;
+	--paper-muted: #6f5a33;
 	background: var(--g50);
-	color-scheme: light;
+	color-scheme: dark;
 	scroll-behavior: smooth;
 	scroll-padding-top: 96px;
 }
@@ -25,7 +30,7 @@ html body {
 	margin: 0;
 	background: var(--g50);
 	color: var(--g900);
-	color-scheme: light;
+	color-scheme: dark;
 	font-family:
 		Inter,
 		ui-sans-serif,
@@ -252,7 +257,7 @@ summary:focus-visible {
 
 .pill-outline-dark {
 	background: rgb(255 255 255 / 0.07);
-	color: var(--g50);
+	color: var(--g900);
 }
 
 .pill-outline-dark:hover {
@@ -280,13 +285,13 @@ summary:focus-visible {
 }
 
 .text-link.on-dark {
-	color: var(--g150);
-	text-decoration-color: var(--g600);
+	color: var(--g800);
+	text-decoration-color: var(--g300);
 }
 
 .text-link.on-dark:hover {
-	color: var(--g50);
-	text-decoration-color: var(--roast-accent);
+	color: var(--g900);
+	text-decoration-color: var(--roast-accent-ink);
 }
 
 .icon {
