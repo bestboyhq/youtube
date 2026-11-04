@@ -19,7 +19,7 @@
 				<img class="app-icon" src="/icons/bestboy.webp" alt="" />
 				<a href="https://bestboy.dev" data-sveltekit-reload>Bestboy</a>
 				<span class="slash">/</span>
-				<a href="/">YouTube</a>
+				<a href="/roasts">YouTube</a>
 			</span>
 			<span class="links">
 				<a href="/roasts">Roasts</a>

@@ -19,4 +19,10 @@ Copy `src/routes/roasts/example/` to `src/routes/roasts/<site-slug>/`, fill in `
 
 ## License
 
-[MIT](LICENSE)
+The code is [MIT](LICENSE).
+
+## Third-party content
+
+Everything recreated under `src/routes/roasts/*/before/` and saved under `static/roasts/*/` belongs to its owners.
+It is shown for commentary and critique, and it is not covered by the MIT license.
+[`NOTICE`](NOTICE) says the same beside the license.
