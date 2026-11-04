@@ -1,0 +1,135 @@
+/* The tooltip's bubble, ported from bestboyhq/platform (src/styles/tooltip.css), trimmed to text tips. */
+
+.tip {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 0;
+	z-index: 60;
+	pointer-events: none;
+	transition: transform 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.tip.snap {
+	transition: none;
+}
+
+.tip.instant .tip-bubble {
+	transition: none;
+}
+
+.tip-bubble {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	transform-origin: bottom center;
+	background: var(--fg-default);
+	color: var(--surface-root);
+	font-family: var(--font-sans);
+	font-size: 0.75rem;
+	font-weight: 450;
+	line-height: 1.45;
+	text-align: center;
+	text-wrap: pretty;
+	padding: 7px 11px;
+	border-radius: 9px;
+	width: max-content;
+	max-width: min(300px, calc(100vw - 24px));
+	box-shadow:
+		0 6px 18px rgb(0 0 0 / 0.16),
+		0 1px 2px rgb(0 0 0 / 0.08);
+	opacity: 0;
+	transform: translateX(-50%) translateY(4px) scale(0.96);
+	transition:
+		opacity 0.16s cubic-bezier(0.33, 1, 0.68, 1),
+		transform 0.16s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.tip.below .tip-bubble {
+	bottom: auto;
+	top: 0;
+	transform-origin: top center;
+	transform: translateX(-50%) translateY(-4px) scale(0.96);
+}
+
+.tip.open .tip-bubble {
+	opacity: 1;
+	transform: translateX(-50%);
+}
+
+.tip-bubble.morph {
+	overflow: hidden;
+	transition:
+		opacity 0.16s cubic-bezier(0.33, 1, 0.68, 1),
+		transform 0.16s cubic-bezier(0.33, 1, 0.68, 1),
+		width 0.24s cubic-bezier(0.32, 0.72, 0, 1),
+		height 0.24s cubic-bezier(0.32, 0.72, 0, 1),
+		border-radius 0.24s cubic-bezier(0.32, 0.72, 0, 1),
+		padding 0.24s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.tip-view {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.tip-text {
+	display: block;
+}
+
+.tip-text.enter {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	animation: tip-text-in 0.24s cubic-bezier(0.33, 1, 0.68, 1) both;
+}
+
+.tip-ghost {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	animation: tip-text-out 0.16s cubic-bezier(0.33, 1, 0.68, 1) both;
+}
+
+/* Each crossfade blurs 2px at its faintest, so the old and new content read as one change. */
+@keyframes tip-text-in {
+	from {
+		opacity: 0;
+		filter: blur(2px);
+		transform: translate(calc(-50% + var(--dx, 0px)), var(--dy, 0px));
+	}
+	to {
+		opacity: 1;
+		filter: blur(0);
+		transform: translate(-50%, 0);
+	}
+}
+
+@keyframes tip-text-out {
+	from {
+		opacity: 1;
+		filter: blur(0);
+		transform: translate(-50%, 0);
+	}
+	to {
+		opacity: 0;
+		filter: blur(2px);
+		transform: translate(calc(-50% - var(--dx, 0px)), calc(0px - var(--dy, 0px)));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.tip,
+	.tip-bubble {
+		transition: none;
+	}
+
+	.tip-text.enter,
+	.tip-ghost {
+		animation: none;
+	}
+}
