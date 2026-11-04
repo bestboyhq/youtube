@@ -42,7 +42,9 @@
 
 	let activeSlide = $state(0);
 	let menuOpen = $state(false);
-	let heroAuto = $state(true);
+	let buildPhase = $state<'building' | 'ready' | 'leaving'>('building');
+	let buildStatus = $state('reading the formula');
+	let typedPrompt = $state('');
 	let carousels = $state(30);
 	let brandsCount = $state(1);
 	let copied = $state<string | null>(null);
@@ -66,6 +68,7 @@
 
 	const agentPrompt =
 		'Use the EasySociable skill to make a carousel with the "The 5-slide teardown" formula for [your idea]. Write the hook, plan the slides, lay them out in my Brand, and open them in Studio for edits.';
+	const buildPrompt = 'make a carousel from “The 5-slide teardown”';
 
 	async function copy(text: string, key: string) {
 		if (copyTimer) clearTimeout(copyTimer);
@@ -95,12 +98,55 @@
 	}
 
 	$effect(() => {
-		if (!heroAuto) return;
-		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-		const id = window.setInterval(() => {
-			activeSlide = (activeSlide + 1) % slides.length;
-		}, 4800);
-		return () => window.clearInterval(id);
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			typedPrompt = buildPrompt;
+			buildPhase = 'ready';
+			buildStatus = 'ready to edit';
+			return;
+		}
+
+		let disposed = false;
+		const timers: ReturnType<typeof setTimeout>[] = [];
+		const later = (fn: () => void, ms: number) => {
+			timers.push(
+				setTimeout(() => {
+					if (!disposed) fn();
+				}, ms)
+			);
+		};
+
+		let typed = 0;
+		const type = () => {
+			typedPrompt = buildPrompt.slice(0, typed);
+			typed += 1;
+			if (typed <= buildPrompt.length) later(type, 24);
+		};
+
+		const build = () => {
+			buildPhase = 'building';
+			buildStatus = `writing slide ${activeSlide + 1} of 6`;
+			later(() => (buildStatus = 'applying the Brand'), 520);
+			later(() => {
+				buildStatus = 'ready to edit';
+				buildPhase = 'ready';
+			}, 1250);
+			later(() => {
+				buildStatus = 'next slide';
+				buildPhase = 'leaving';
+			}, 5100);
+			later(() => {
+				activeSlide = (activeSlide + 1) % slides.length;
+				build();
+			}, 5680);
+		};
+
+		later(type, 500);
+		later(build, 900);
+
+		return () => {
+			disposed = true;
+			timers.forEach((timer) => clearTimeout(timer));
+		};
 	});
 </script>
 
@@ -222,9 +268,10 @@
 						Make carousels<br />that stop<br /><span class="mark">the scroll.</span>
 					</h1>
 					<p class="lead hero-lead">
-						One prompt turns a proven viral format into a finished, on-brand carousel for creators
-						and the teams behind them. Edit every word in Studio, then publish to Instagram,
-						LinkedIn, TikTok, Threads, X or <span class="nowrap">小红书</span> from your phone.
+						One prompt turns a proven viral format into a finished,
+						<span class="nowrap">on-brand</span> carousel for creators and the teams behind them.
+						Edit every word in Studio, then publish to Instagram, LinkedIn, TikTok, Threads, X or
+						<span class="nowrap">小红书</span> from your phone.
 					</p>
 					<div class="hero-actions">
 						<button
@@ -252,50 +299,34 @@
 					</div>
 				</div>
 
-				<div class="stage">
-					<div class="studio">
-						<div class="window-bar">
-							<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-							<span class="window-title">Studio · Grok Bot</span>
-							<span class="window-edit">Live preview</span>
-						</div>
-						<div class="agent" aria-hidden="true">
-							<p class="agent-prompt">
-								<span class="chev">›</span>
-								<span>make a carousel from “The 5-slide teardown”</span>
-							</p>
-							<div class="agent-done">
-								<span>{@render checkIcon()} Skill installed</span>
-								<span>{@render checkIcon()} 6 slides written</span>
-								<span>{@render checkIcon()} Brand applied</span>
-							</div>
-						</div>
-						<div class="preview">
-							<div class="preview-frame">
-								{#key activeSlide}
-									<CarouselSlide slide={slides[activeSlide]} />
-								{/key}
-							</div>
-						</div>
-						<div class="filmstrip" role="group" aria-label="Carousel slides">
-							{#each slides as slide, index}
-								<button
-									class="thumb"
-									class:active={activeSlide === index}
-									type="button"
-									aria-label="Show slide {index + 1}"
-									aria-pressed={activeSlide === index}
-									onclick={() => {
-										heroAuto = false;
-										activeSlide = index;
-									}}
-								>
-									<CarouselSlide {slide} />
-								</button>
-							{/each}
-						</div>
+				<div
+					class="build"
+					class:building={buildPhase === 'building'}
+					class:ready={buildPhase === 'ready'}
+					class:leaving={buildPhase === 'leaving'}
+				>
+					<div class="build-glow" aria-hidden="true"></div>
+					<div class="build-prompt" aria-hidden="true">
+						<span class="chev">›</span>
+						<span>{typedPrompt}</span>
+						<span class="build-caret"></span>
 					</div>
-					<span class="stage-chip">Every word editable</span>
+					<div class="build-card">
+						<span class="crop tl" aria-hidden="true"></span>
+						<span class="crop tr" aria-hidden="true"></span>
+						<span class="crop bl" aria-hidden="true"></span>
+						<span class="crop br" aria-hidden="true"></span>
+						{#key activeSlide}
+							<div class="build-sheet">
+								<CarouselSlide slide={slides[activeSlide]} />
+							</div>
+						{/key}
+						<span class="build-size" aria-hidden="true">4:5 · 1080 × 1350</span>
+					</div>
+					<div class="build-status" aria-hidden="true">
+						<span class="build-dot"></span>
+						<span>{buildStatus}</span>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -845,7 +876,7 @@
 
 	.hero-grid {
 		display: grid;
-		grid-template-columns: 1.04fr 0.96fr;
+		grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
 		gap: clamp(32px, 4vw, 64px);
 		align-items: center;
 	}
@@ -880,12 +911,11 @@
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		gap: 7px;
+		gap: 7px 6px;
 		margin-top: 28px;
 	}
 
 	.platforms-label {
-		margin-right: 2px;
 		color: var(--g500);
 		font-size: 10px;
 		font-weight: 700;
@@ -902,150 +932,288 @@
 		font-weight: 600;
 	}
 
-	.stage {
+	.build {
 		position: relative;
-		border-radius: 32px;
-		padding: clamp(18px, 2.2vw, 26px);
-		background: radial-gradient(120% 100% at 18% 0%, #3b3019 0%, #302a23 52%, #2a2520 100%);
-		box-shadow: 0 42px 90px -56px rgb(0 0 0 / 0.9);
+		isolation: isolate;
+		height: clamp(520px, 47vw, 580px);
 	}
 
-	.studio {
-		overflow: hidden;
-		border-radius: 22px;
-		background: var(--g50);
-		box-shadow: 0 20px 40px -30px rgb(61 44 0 / 0.4);
-	}
-
-	.window-bar {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		padding: 11px 14px;
-		background: var(--g100);
-	}
-
-	.dots {
-		display: flex;
-		gap: 5px;
-	}
-
-	.dots i {
-		width: 7px;
-		height: 7px;
-		border-radius: 50%;
-		background: var(--g300);
-	}
-
-	.window-title {
-		color: var(--g600);
-		font-size: 11.5px;
-		font-weight: 600;
-		letter-spacing: -0.01em;
-	}
-
-	.window-edit {
-		margin-left: auto;
-		padding: 3px 9px;
-		border-radius: 999px;
-		background: var(--g50);
-		color: var(--g600);
-		font-size: 9.5px;
-		font-weight: 650;
-	}
-
-	.agent {
-		margin: 10px 12px 0;
-		padding: 12px 14px;
-		border-radius: 16px;
-		background: #1e1a16;
-		color: var(--g900);
-	}
-
-	.agent-prompt {
-		display: flex;
-		gap: 7px;
-		font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-		font-size: 11px;
-		line-height: 1.45;
-	}
-
-	.chev {
-		color: var(--roast-accent);
-	}
-
-	.agent-done {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 5px;
-		margin-top: 9px;
-	}
-
-	.agent-done span {
-		display: inline-flex;
-		align-items: center;
-		gap: 4px;
-		padding: 3px 8px;
-		border-radius: 999px;
-		background: rgb(255 255 255 / 0.08);
-		color: var(--g500);
-		font-size: 9px;
-		font-weight: 600;
-	}
-
-	.agent-done .icon {
-		width: 11px;
-		height: 11px;
-		color: var(--roast-accent);
-	}
-
-	.preview {
-		padding: 12px 12px 0;
-	}
-
-	.preview-frame {
-		width: min(100%, 330px);
-		margin-inline: auto;
-	}
-
-	.filmstrip {
-		display: grid;
-		grid-template-columns: repeat(6, 1fr);
-		gap: 7px;
-		padding: 12px 14px 14px;
-	}
-
-	.thumb {
-		overflow: hidden;
-		padding: 0;
-		border-radius: 6px;
-		opacity: 0.5;
-		transition:
-			opacity 200ms ease,
-			transform 200ms ease;
-	}
-
-	.thumb:hover {
-		opacity: 0.85;
-	}
-
-	.thumb.active {
-		opacity: 1;
-		transform: translateY(-1px);
-	}
-
-	.stage-chip {
+	.build::before {
+		content: '';
 		position: absolute;
-		left: -9px;
-		bottom: 24px;
-		padding: 7px 11px;
-		border-radius: 10px;
-		background: var(--g150);
-		box-shadow: 0 12px 24px -16px rgb(0 0 0 / 0.8);
-		color: var(--g800);
-		font-size: 11px;
-		font-weight: 650;
-		transform: rotate(-3deg);
+		inset: 0;
+		background-image: radial-gradient(circle, rgb(241 233 217 / 0.13) 1px, transparent 1.4px);
+		background-size: 22px 22px;
+		-webkit-mask-image: radial-gradient(ellipse at 52% 50%, #000 26%, transparent 74%);
+		mask-image: radial-gradient(ellipse at 52% 50%, #000 26%, transparent 74%);
+		pointer-events: none;
+	}
+
+	.build-glow {
+		position: absolute;
+		inset: 4% 8% 2% 8%;
+		border-radius: 50%;
+		background: radial-gradient(
+			closest-side,
+			rgb(255 231 163 / 0.17),
+			rgb(255 231 163 / 0.05) 58%,
+			transparent 78%
+		);
+		pointer-events: none;
+		transition: scale 900ms ease;
+	}
+
+	.build.building .build-glow {
+		scale: 1.06;
+	}
+
+	.build-prompt {
+		position: absolute;
+		top: 4px;
+		left: 3%;
+		z-index: 20;
+		display: flex;
+		align-items: center;
+		gap: 9px;
+		color: var(--g500);
+		font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+		font-size: 12.5px;
+		letter-spacing: -0.01em;
+		white-space: nowrap;
+	}
+
+	.build-prompt .chev {
+		color: var(--roast-accent);
+		font-weight: 700;
+	}
+
+	.build-caret {
+		width: 7px;
+		height: 15px;
+		margin-left: 1px;
+		background: var(--roast-accent);
+		animation: blink 1.1s steps(1) infinite;
+	}
+
+	.build-card {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: min(66%, 370px);
+		aspect-ratio: 4 / 5;
+		translate: -50% -50%;
+		perspective: 1200px;
+	}
+
+	.build.leaving .build-card {
+		animation: card-out 520ms cubic-bezier(0.5, 0, 0.7, 0.2) both;
+	}
+
+	@keyframes card-out {
+		to {
+			opacity: 0;
+			transform: translateY(-28px) rotate(-2deg) scale(0.975);
+			filter: blur(2px);
+		}
+	}
+
+	.crop {
+		position: absolute;
+		width: 13px;
+		height: 13px;
+		border: 0 solid rgb(241 233 217 / 0.34);
+		opacity: 0;
+		transition: opacity 500ms ease 120ms;
+		pointer-events: none;
+	}
+
+	.build.ready .crop {
+		opacity: 1;
+	}
+
+	.crop.tl {
+		top: -15px;
+		left: -15px;
+		border-top-width: 1px;
+		border-left-width: 1px;
+	}
+
+	.crop.tr {
+		top: -15px;
+		right: -15px;
+		border-top-width: 1px;
+		border-right-width: 1px;
+	}
+
+	.crop.bl {
+		bottom: -15px;
+		left: -15px;
+		border-bottom-width: 1px;
+		border-left-width: 1px;
+	}
+
+	.crop.br {
+		bottom: -15px;
+		right: -15px;
+		border-bottom-width: 1px;
+		border-right-width: 1px;
+	}
+
+	.build-size {
+		position: absolute;
+		right: -14px;
+		bottom: -40px;
+		color: var(--g400);
+		font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+		font-size: 9px;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		white-space: nowrap;
+		opacity: 0;
+		transition: opacity 500ms ease 300ms;
+	}
+
+	.build.ready .build-size {
+		opacity: 1;
+	}
+
+	.build-status {
+		position: absolute;
+		inset: auto 4% 0 3%;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		color: var(--g500);
+		font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+		font-size: 10px;
+		letter-spacing: 0.02em;
+	}
+
+	.build-dot {
+		width: 5px;
+		height: 5px;
+		border-radius: 50%;
+		background: var(--roast-accent);
+		animation: build-pulse 1.8s ease-in-out infinite;
+	}
+
+	@keyframes build-pulse {
+		0%,
+		100% {
+			box-shadow: 0 0 0 3px rgb(255 231 163 / 0.07);
+		}
+		50% {
+			box-shadow: 0 0 0 6px rgb(255 231 163 / 0.13);
+		}
+	}
+
+	.build-sheet {
+		transform-origin: 50% 62%;
+		animation: sheet-in 850ms cubic-bezier(0.16, 0.84, 0.2, 1) both;
+	}
+
+	@keyframes sheet-in {
+		from {
+			opacity: 0;
+			transform: perspective(1200px) translateY(26px) rotateX(9deg) rotateY(-7deg) scale(0.955);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	.build-sheet :global(.top),
+	.build-sheet :global(.index),
+	.build-sheet :global(.body),
+	.build-sheet :global(.foot) {
+		animation: fade-up 600ms cubic-bezier(0.16, 0.84, 0.2, 1) both;
+	}
+
+	.build-sheet :global(.top) {
+		animation-delay: 140ms;
+	}
+
+	.build-sheet :global(.index) {
+		animation-delay: 230ms;
+	}
+
+	.build-sheet :global(.body) {
+		animation-delay: 760ms;
+	}
+
+	.build-sheet :global(.foot) {
+		animation-delay: 1040ms;
+	}
+
+	@keyframes fade-up {
+		from {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	.build-sheet :global(.title .line > span) {
+		animation: line-in 880ms cubic-bezier(0.16, 0.84, 0.2, 1) both;
+		animation-delay: calc(320ms + var(--line-index) * 95ms);
+	}
+
+	@keyframes line-in {
+		from {
+			transform: translateY(112%);
+		}
+		to {
+			transform: none;
+		}
+	}
+
+	.build-sheet :global(.chips span) {
+		animation: chip-in 460ms cubic-bezier(0.2, 1.3, 0.4, 1) both;
+		animation-delay: calc(760ms + var(--chip-index) * 90ms);
+	}
+
+	@keyframes chip-in {
+		from {
+			opacity: 0;
+			transform: translateY(6px) scale(0.9);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	.build-sheet :global(.slide)::after {
+		content: '';
+		position: absolute;
+		inset: -10% -30%;
+		background: linear-gradient(
+			105deg,
+			transparent 34%,
+			rgb(255 255 255 / 0.55) 47%,
+			transparent 60%
+		);
+		opacity: 0;
+		animation: sweep 1150ms ease-out 1020ms both;
+		pointer-events: none;
+	}
+
+	@keyframes sweep {
+		0% {
+			opacity: 0;
+			transform: translateX(-62%);
+		}
+		28% {
+			opacity: 0.65;
+		}
+		100% {
+			opacity: 0;
+			transform: translateX(62%);
+		}
 	}
 
 	/* Problem */
@@ -1912,8 +2080,9 @@
 			grid-template-columns: 1fr;
 		}
 
-		.stage {
+		.build {
 			width: min(100%, 560px);
+			height: 560px;
 			margin-inline: auto;
 		}
 
@@ -1961,8 +2130,22 @@
 			flex: 1 1 auto;
 		}
 
-		.stage-chip {
-			display: none;
+		.build {
+			height: 480px;
+		}
+
+		.build-card {
+			width: min(72%, 300px);
+		}
+
+		.build-prompt {
+			font-size: 10.5px;
+			white-space: normal;
+			max-width: 88%;
+		}
+
+		.build-size {
+			right: -6px;
 		}
 	}
 </style>

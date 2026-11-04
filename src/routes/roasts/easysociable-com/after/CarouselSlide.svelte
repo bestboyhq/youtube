@@ -27,18 +27,19 @@
 		</div>
 		<p class="index">{slide.index}</p>
 		<p class="title">
-			{#each slide.title as line, i}{line}{#if i < slide.title.length - 1}<br />{/if}{/each}
-			{#if slide.accent.length > 0}
-				<br /><span class="accent"
-					>{#each slide.accent as line, i}{line}{#if i < slide.accent.length - 1}<br
-							/>{/if}{/each}</span
+			{#each slide.title as line, i}
+				<span class="line"><span style:--line-index={i}>{line}</span></span>
+			{/each}
+			{#each slide.accent as line, i}
+				<span class="line accent"
+					><span style:--line-index={i + slide.title.length}>{line}</span></span
 				>
-			{/if}
+			{/each}
 		</p>
 		<p class="body">{slide.body}</p>
 		{#if slide.chips}
 			<div class="chips">
-				{#each slide.chips as chip}<span>{chip}</span>{/each}
+				{#each slide.chips as chip, i}<span style:--chip-index={i}>{chip}</span>{/each}
 			</div>
 		{/if}
 		<div class="foot">
@@ -109,6 +110,17 @@
 		font-weight: 650;
 		letter-spacing: -0.045em;
 		line-height: 1.01;
+	}
+
+	.title .line {
+		display: block;
+		overflow: hidden;
+		padding-bottom: 0.12em;
+		margin-bottom: -0.12em;
+	}
+
+	.title .line > span {
+		display: block;
 	}
 
 	.accent {
