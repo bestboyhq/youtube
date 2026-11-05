@@ -33,7 +33,9 @@
 		</a>
 		<nav class="nav-links" aria-label="Main">
 			<a href="#formats">Formats</a>
+			<a href="#features">Features</a>
 			<a href="#pricing">Pricing</a>
+			<a href="#faq">FAQ</a>
 		</nav>
 		<div class="nav-cta">
 			<a class="signin" href="#start">Sign in</a>
@@ -44,8 +46,11 @@
 
 <main id="top">
 	<section class="hero">
+		<div class="halo" aria-hidden="true"></div>
+
 		<div class="shell hero-split">
 			<div>
+				<p class="kicker">For Claude Code, Codex &amp; Cursor</p>
 				<h1>Make carousels people stop scrolling for.</h1>
 				<p class="lede">
 					Start from a format that already worked. Fix any word. Post it from your phone.
@@ -146,7 +151,6 @@
 									<svg class="cursor" viewBox="0 0 24 24" fill="none" aria-hidden="true">
 										<path
 											d="M5 3.5 19 11l-6.2 1.9L9.5 19 5 3.5Z"
-											fill="#17110f"
 											stroke="#fff"
 											stroke-width="1.4"
 											stroke-linejoin="round"
@@ -179,11 +183,88 @@
 		</div>
 	</section>
 
+	<section class="section" id="features">
+		<div class="shell">
+			<div class="features-head">
+				<div>
+					<p class="kicker">The rest of the loop</p>
+					<h2>Everything else it does.</h2>
+				</div>
+				<p class="section-lead">
+					The parts that turn a draft into a post you can send to a client.
+				</p>
+			</div>
+
+			<div class="feat-grid">
+				<article class="feat">
+					<span class="fnum">01</span>
+					<div>
+						<h3>Run every Brand. Switch in one click.</h3>
+						<p>
+							Name, handle, avatar and color live in a Brand. Switch a finished carousel and every
+							page follows. 1 Brand on Free, 3 on Creator, 25 on Studio.
+						</p>
+					</div>
+				</article>
+				<article class="feat">
+					<span class="fnum">02</span>
+					<div>
+						<h3>Send a client a link.</h3>
+						<p>
+							No account, no downloads, no files in a chat. You choose whether they can view, edit
+							or publish, and a link you turn off stops working.
+						</p>
+					</div>
+				</article>
+				<article class="feat">
+					<span class="fnum">03</span>
+					<div>
+						<h3>Publish from your phone.</h3>
+						<p>
+							Tap Publish and pick Instagram, TikTok, LinkedIn, Threads or RedNote. Pages land in
+							order and the caption is copied. On a computer, Publish downloads the pages.
+						</p>
+					</div>
+				</article>
+				<article class="feat">
+					<span class="fnum">04</span>
+					<div>
+						<h3>Start from what worked.</h3>
+						<p>
+							48 templates and 20 viral formulas, broken down page by page. One click gives your
+							agent the structure behind a post that already earned its views.
+						</p>
+					</div>
+				</article>
+				<article class="feat">
+					<span class="fnum">05</span>
+					<div>
+						<h3>Works with your agent.</h3>
+						<p>
+							Claude Code, Codex, Cursor or any agent with a terminal. It installs EasySociable,
+							signs you in and sends the Studio link. Steps already done are skipped.
+						</p>
+					</div>
+				</article>
+				<article class="feat">
+					<span class="fnum">06</span>
+					<div>
+						<h3>Free is the whole loop.</h3>
+						<p>
+							30 carousels a month, 1 Brand, 500 MB of images and up to 20 slides. Edit, download
+							and publish with no watermark and no card.
+						</p>
+					</div>
+				</article>
+			</div>
+		</div>
+	</section>
+
 	<section class="section" id="formats">
 		<div class="shell">
 			<div class="proof">
 				<div>
-					<h2 class="kicker">Start from what worked</h2>
+					<p class="kicker">Start from what worked</p>
 					<p class="bigstat">
 						2.6M<small>views on one carousel. The structure is in the library.</small>
 					</p>
@@ -191,6 +272,11 @@
 						Every format is a real post that earned its views. Start from one and it writes yours
 						the same way.
 					</p>
+					<div class="stat-row">
+						<span><b>48</b> templates</span>
+						<span><b>20</b> formulas</span>
+						<span><b>5</b> platforms</span>
+					</div>
 				</div>
 				<figure class="proof-img">
 					<img
@@ -207,14 +293,21 @@
 		<div class="shell">
 			<div class="pricing-head">
 				<h2>Start free. Pay when you need more.</h2>
-				<p>No credits. No per-post fees. Cancel anytime.</p>
+				<p>No credits. No per-post fees. Yearly billing saves two months. Cancel anytime.</p>
 			</div>
 			<div class="plans">
 				<div class="plan">
 					<div class="plan-top"><span class="name">Free</span></div>
 					<div class="price">$0</div>
 					<div class="per">forever</div>
-					<p class="line">30 carousels a month. One brand.</p>
+					<p class="line">The whole loop: your agent writes, you edit, you publish.</p>
+					<ul class="plan-list">
+						<li>30 carousels a month</li>
+						<li>1 Brand, 500 MB images</li>
+						<li>Publish to 5 platforms</li>
+						<li>20 slides, no watermark</li>
+					</ul>
+					<a class="plan-cta" href="#start">Start free <span>→</span></a>
 				</div>
 				<div class="plan">
 					<div class="plan-top">
@@ -222,18 +315,100 @@
 					</div>
 					<div class="price">$19</div>
 					<div class="per">per month</div>
-					<p class="line">Unlimited carousels. Three brands.</p>
+					<p class="line">For creators and founders posting every week.</p>
+					<ul class="plan-list">
+						<li>Unlimited carousels</li>
+						<li>3 Brands, 10 GB images</li>
+						<li>Share links for clients</li>
+						<li>Publish to 5 platforms</li>
+					</ul>
+					<a class="plan-cta" href="#start">Get Creator <span>→</span></a>
 				</div>
 				<div class="plan">
 					<div class="plan-top"><span class="name">Studio</span></div>
 					<div class="price">$49</div>
 					<div class="per">per month</div>
-					<p class="line">Unlimited carousels. 25 brands. Client links.</p>
+					<p class="line">For agencies and anyone running many accounts.</p>
+					<ul class="plan-list">
+						<li>Unlimited carousels</li>
+						<li>25 Brands, 100 GB images</li>
+						<li>Share links for clients</li>
+						<li>Publish to 5 platforms</li>
+					</ul>
+					<a class="plan-cta" href="#start">Get Studio <span>→</span></a>
 				</div>
 			</div>
 			<p class="pricing-foot">
-				A Brand is your name, handle, avatar and color. Yearly billing saves two months.
+				Every plan: full Studio editing, up to 20 slides, no watermark, cancel anytime.<br />
+				<a href="#start">Full pricing details →</a>
 			</p>
+		</div>
+	</section>
+
+	<section class="section" id="faq">
+		<div class="shell faq-grid">
+			<div>
+				<p class="kicker">Questions</p>
+				<h2>Before you start.</h2>
+				<p class="section-lead">
+					The short answers to what people ask most about the agent, Studio, publishing and plans.
+				</p>
+			</div>
+			<div class="faq">
+				<details>
+					<summary>How is this different from asking ChatGPT or Codex for a carousel?</summary>
+					<p>
+						A prompt can regenerate the whole carousel and move the layout. EasySociable splits
+						drafting from editing: your agent drafts, then you double-click any text in Studio while
+						the layout stays locked.
+					</p>
+				</details>
+				<details>
+					<summary>Can I switch the Brand on an already-created carousel?</summary>
+					<p>
+						Yes, with one click. Content and styling are separate, so name, handle, avatar and
+						colors update across every page.
+					</p>
+				</details>
+				<details>
+					<summary>What is the viral library?</summary>
+					<p>
+						Top carousels from TikTok, Instagram and LinkedIn, broken down page by page. 48
+						templates and 20 formulas, each with a prompt your agent can copy.
+					</p>
+				</details>
+				<details>
+					<summary>What does the copied prompt do?</summary>
+					<p>
+						It tells Claude Code, Codex, Cursor or any agent with a terminal to install EasySociable
+						if needed, sign you in through the browser, make the carousel and send the Studio link.
+						Steps already done are skipped.
+					</p>
+				</details>
+				<details>
+					<summary>Can I post from my phone without downloading?</summary>
+					<p>
+						Yes. Open the Studio link on your phone, tap Publish, then pick Instagram, TikTok,
+						LinkedIn, Threads or RedNote. Pages arrive in order and the caption is copied. No ZIP,
+						no AirDrop.
+					</p>
+				</details>
+				<details>
+					<summary>Who can open a share link?</summary>
+					<p>
+						Anyone with the link, no account needed. View shows the pages, edit can change them,
+						publish can post them. You can turn a link off at any time. Share links are on Creator
+						and Studio.
+					</p>
+				</details>
+				<details>
+					<summary>What does the Free plan include?</summary>
+					<p>
+						30 carousels a month, 1 Brand, a 500 MB image library and up to 20 slides. Full Studio
+						editing, no watermark, no card. Share links and more Brands are on Creator and Studio.
+					</p>
+				</details>
+			</div>
 		</div>
 	</section>
 
@@ -257,19 +432,121 @@
 					Make my first carousel
 				</a>
 			</div>
-			<p class="note">Free. No card.</p>
+			<p class="note">
+				Copies a prompt for Claude Code, Codex or Cursor. Paste it and your agent installs
+				EasySociable, signs you in and makes a first carousel you can edit. Free, no card.
+			</p>
+			<p class="note">
+				No agent handy? <a class="text-link" href="#start">Sign up in the browser</a>
+			</p>
 		</div>
 	</section>
 </main>
 
-<footer class="footer">
-	<div class="shell footer-inner">
-		<span>© 2026 EasySociable</span>
-		<nav aria-label="Footer">
-			<a href="#formats">Formats</a>
-			<a href="#pricing">Pricing</a>
-			<a href="#start">Contact</a>
-		</nav>
+<footer class="footer" id="footer">
+	<div class="shell">
+		<div class="foot-brand">
+			<div>
+				<a class="brand" href="#top" aria-label="EasySociable home">
+					<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+						<g transform="rotate(-20 16 27)">
+							<rect x="10" y="7" width="12" height="18.5" rx="2.3" opacity="0.45" />
+						</g>
+						<g transform="rotate(20 16 27)">
+							<rect x="10" y="7" width="12" height="18.5" rx="2.3" opacity="0.45" />
+						</g>
+						<rect x="10" y="5.2" width="12" height="21" rx="2.3" />
+					</svg>
+					EasySociable
+				</a>
+				<p>
+					Your agent makes the carousel. You edit every word in Studio and download the PNGs. Free
+					is $0: 30 carousels a month, up to 20 slides, no watermark.
+				</p>
+				<a class="llms" href="#top">llms.txt <span>AI guide</span></a>
+			</div>
+			<div class="foot-cols">
+				<div>
+					<p class="foot-h">Product</p>
+					<ul>
+						<li><a href="#pricing">Pricing plans</a></li>
+						<li><a href="#start">Start free</a></li>
+						<li><a href="#top">Getting started</a></li>
+						<li><a href="#top">Install skill</a></li>
+						<li><a href="#top">Make a carousel</a></li>
+						<li><a href="#top">Help &amp; support</a></li>
+					</ul>
+				</div>
+				<div>
+					<p class="foot-h">Formats</p>
+					<ul>
+						<li><a href="#formats">Templates overview (48)</a></li>
+						<li><a href="#formats">Viral formulas (20)</a></li>
+						<li><a href="#top">Guides</a></li>
+						<li><a href="#top">Documentation</a></li>
+						<li><a href="#top">TikTok slideshows</a></li>
+						<li><a href="#top">Instagram swipe posts</a></li>
+						<li><a href="#top">LinkedIn carousels</a></li>
+						<li><a href="#top">Threads visual cards</a></li>
+						<li><a href="#top">小红书 3:4 模板</a></li>
+					</ul>
+				</div>
+				<div>
+					<p class="foot-h">Compare</p>
+					<ul>
+						<li><a href="#top">Compare overview</a></li>
+						<li><a href="#top">Canva alternative</a></li>
+						<li><a href="#top">ChatGPT to carousel</a></li>
+						<li><a href="#top">Midjourney vs EasySociable</a></li>
+						<li><a href="#top">Claude Code carousels</a></li>
+						<li><a href="#top">Markdown to carousel</a></li>
+						<li><a href="#top">vs. PostNitro</a></li>
+						<li><a href="#top">vs. Predis.ai</a></li>
+						<li><a href="#top">vs. aiCarousels</a></li>
+						<li><a href="#top">vs. Carouselli</a></li>
+						<li><a href="#top">vs. Taplio</a></li>
+						<li><a href="#top">vs. Supergrow</a></li>
+						<li><a href="#top">vs. AuthoredUp</a></li>
+						<li><a href="#top">Canva MCP vs EasySociable</a></li>
+						<li><a href="#top">vs. Contentdrips</a></li>
+					</ul>
+				</div>
+				<div>
+					<p class="foot-h">Free tools</p>
+					<ul>
+						<li><a href="#top">Free creator tools</a></li>
+						<li><a href="#top">Markdown to carousel</a></li>
+						<li><a href="#top">Screenshot beautifier</a></li>
+						<li><a href="#top">Tweet to image</a></li>
+						<li><a href="#top">Code to image</a></li>
+						<li><a href="#top">LinkedIn carousel generator</a></li>
+						<li><a href="#top">Instagram carousel splitter</a></li>
+						<li><a href="#top">Carousel to PDF</a></li>
+						<li><a href="#top">LinkedIn text formatter</a></li>
+						<li><a href="#top">Instagram grid maker</a></li>
+						<li><a href="#top">Social safe zones</a></li>
+						<li><a href="#top">AI carousel maker</a></li>
+						<li><a href="#top">Carousel maker</a></li>
+						<li><a href="#top">Quote image maker</a></li>
+					</ul>
+				</div>
+				<div>
+					<p class="foot-h">Legal</p>
+					<ul>
+						<li><a href="#top">About</a></li>
+						<li><a href="#top">Contact</a></li>
+						<li><a href="#top">Terms of service</a></li>
+						<li><a href="#top">Privacy policy</a></li>
+						<li><a href="#top">Acceptable use</a></li>
+						<li><a href="#top">Refund policy</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="foot-base">
+			<span>© 2026 EasySociable. All rights reserved.</span>
+			<span>Carousels people stop scrolling for.</span>
+		</div>
 	</div>
 </footer>
 
@@ -317,6 +594,15 @@
 		--fg: var(--g50);
 		--fg-2: var(--g350);
 		--fg-3: var(--g450);
+		--line: rgb(255 255 255 / 0.09);
+		--line-soft: rgb(255 255 255 / 0.055);
+
+		--paper: #eae3d7;
+		--paper-ink: #1c1612;
+		--paper-muted: #6d6259;
+		--back: #2a221f;
+
+		--signal: #ffe7a3;
 
 		--font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 		--font-serif: 'Fraunces', ui-serif, Georgia, serif;
@@ -329,12 +615,21 @@
 	@media (prefers-color-scheme: light) {
 		:global(:root) {
 			color-scheme: light;
-			--bg: var(--g50);
+			--bg: #f4f1ea;
 			--surface: #ffffff;
-			--surface-2: var(--g100);
-			--fg: var(--g900);
-			--fg-2: var(--g600);
-			--fg-3: var(--g500);
+			--surface-2: #ebe5da;
+			--fg: #17140f;
+			--fg-2: #6b6459;
+			--fg-3: #8a7c6e;
+			--line: rgb(23 20 15 / 0.1);
+			--line-soft: rgb(23 20 15 / 0.06);
+
+			--paper: #ffffff;
+			--paper-ink: #17110f;
+			--paper-muted: #706663;
+			--back: #e4ddd2;
+
+			--signal: #8a6a4a;
 		}
 	}
 
@@ -371,8 +666,13 @@
 	h2,
 	h3,
 	p,
-	figure {
+	figure,
+	ul {
 		margin: 0;
+	}
+	ul {
+		padding: 0;
+		list-style: none;
 	}
 	h1,
 	h2,
@@ -394,7 +694,7 @@
 		padding-inline: var(--pad);
 	}
 
-	/* Nav: no border, no boxes. */
+	/* Nav */
 	.nav {
 		position: sticky;
 		top: 0;
@@ -451,6 +751,7 @@
 	.btn {
 		display: inline-flex;
 		align-items: center;
+		white-space: nowrap;
 		justify-content: center;
 		gap: 9px;
 		height: 50px;
@@ -499,7 +800,6 @@
 	/* Type */
 	.kicker {
 		margin-bottom: 22px;
-		max-width: none;
 		font-family: var(--font-mono);
 		font-size: 10px;
 		font-weight: 400;
@@ -551,9 +851,23 @@
 		color: var(--fg-2);
 	}
 
-	/* Hero */
+	/* Hero and halo */
 	.hero {
-		padding-block: clamp(40px, 6vw, 72px) clamp(40px, 6vw, 60px);
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+		padding-block: clamp(40px, 6vw, 72px) clamp(48px, 6vw, 72px);
+	}
+	.halo {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		pointer-events: none;
+		overflow: hidden;
+	}
+	.hero .shell {
+		position: relative;
+		z-index: 1;
 	}
 	.hero-split {
 		display: grid;
@@ -566,14 +880,67 @@
 		font-size: clamp(42px, 4.8vw, 58px);
 	}
 
+	/* Spotlight: a shaft of light falling from above */
+	.halo::before {
+		content: '';
+		position: absolute;
+		top: -55%;
+		right: -8%;
+		width: 38%;
+		height: 220%;
+		transform: rotate(16deg);
+		transform-origin: 50% 0;
+		background: linear-gradient(
+			90deg,
+			transparent,
+			rgb(255 231 163 / 0.12) 26%,
+			rgb(255 242 205 / 0.55) 48%,
+			rgb(255 231 163 / 0.16) 68%,
+			transparent
+		);
+		-webkit-mask-image: linear-gradient(180deg, transparent, #000 10%, #000 58%, transparent 90%);
+		mask-image: linear-gradient(180deg, transparent, #000 10%, #000 58%, transparent 90%);
+		filter: blur(26px);
+		mix-blend-mode: screen;
+		animation: halo-sway-beam 18s ease-in-out infinite;
+	}
+	.halo::after {
+		content: '';
+		position: absolute;
+		left: 52%;
+		bottom: 6%;
+		width: 46%;
+		height: 18%;
+		transform: translateX(-50%);
+		border-radius: 50%;
+		background: radial-gradient(ellipse, rgb(255 236 190 / 0.4), transparent 70%);
+		filter: blur(30px);
+		mix-blend-mode: screen;
+	}
+	@media (prefers-color-scheme: light) {
+		.halo::before,
+		.halo::after {
+			mix-blend-mode: normal;
+			opacity: 0.6;
+		}
+	}
+
+	@keyframes halo-sway-beam {
+		0%,
+		100% {
+			transform: rotate(14.5deg);
+			opacity: 0.82;
+		}
+		50% {
+			transform: rotate(17.5deg);
+			opacity: 1;
+		}
+	}
+
 	/* Carousel deck */
 	.stage {
 		display: flex;
 		justify-content: center;
-		margin-top: clamp(48px, 7vw, 84px);
-	}
-	.hero-split .stage {
-		margin-top: 0;
 	}
 	.deck {
 		position: relative;
@@ -587,23 +954,23 @@
 		position: absolute;
 		inset: 0;
 		border-radius: 7px;
-		background: var(--surface-2);
+		background: var(--back);
 	}
 	.deck .b1 {
 		transform: translate(-13px, 9px) rotate(-4deg) scale(0.975);
-		opacity: 0.6;
+		opacity: 0.7;
 	}
 	.deck .b2 {
 		transform: translate(13px, 9px) rotate(4deg) scale(0.975);
-		opacity: 0.4;
+		opacity: 0.5;
 	}
 	.card {
 		position: absolute;
 		inset: 0;
 		overflow: hidden;
 		border-radius: 7px;
-		background: #fff;
-		color: #17110f;
+		background: var(--paper);
+		color: var(--paper-ink);
 		box-shadow: 0 34px 90px -46px rgb(0 0 0 / 0.7);
 	}
 	.slide {
@@ -654,11 +1021,11 @@
 		font-size: 8.5px;
 		letter-spacing: 0.09em;
 		text-transform: uppercase;
-		color: #706663;
+		color: var(--paper-muted);
 	}
 	.slide-top b {
 		font-weight: 500;
-		color: #17110f;
+		color: var(--paper-ink);
 		letter-spacing: -0.01em;
 		font-family: var(--font-sans);
 		font-size: 12px;
@@ -671,13 +1038,13 @@
 		font-weight: 600;
 		line-height: 1.02;
 		letter-spacing: -0.035em;
-		color: #17110f;
+		color: var(--paper-ink);
 	}
 	.slide .sub {
 		margin-top: 12px;
 		font-size: 13.5px;
 		line-height: 1.5;
-		color: #706663;
+		color: var(--paper-muted);
 	}
 	.slide-foot {
 		display: flex;
@@ -688,7 +1055,7 @@
 		font-size: 8.5px;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		color: #706663;
+		color: var(--paper-muted);
 	}
 	.dots {
 		position: absolute;
@@ -759,6 +1126,10 @@
 		gap: clamp(20px, 4vw, 52px);
 		align-items: start;
 		padding-block: clamp(30px, 4.5vw, 52px);
+		border-top: 1px solid var(--line-soft);
+	}
+	.step:first-of-type {
+		border-top: 0;
 	}
 	.step .num {
 		align-self: start;
@@ -792,8 +1163,8 @@
 		aspect-ratio: 16 / 10;
 		overflow: hidden;
 		border-radius: 7px;
-		background: #fff;
-		color: #17110f;
+		background: var(--paper);
+		color: var(--paper-ink);
 		padding: clamp(26px, 4.4vw, 46px);
 		display: flex;
 		flex-direction: column;
@@ -811,14 +1182,14 @@
 		font-size: 8px;
 		letter-spacing: 0.09em;
 		text-transform: uppercase;
-		color: #706663;
+		color: var(--paper-muted);
 	}
 	.editor h3 {
 		font-size: clamp(28px, 4.6vw, 48px);
 		font-weight: 500;
 		line-height: 1.05;
 		letter-spacing: -0.045em;
-		color: #17110f;
+		color: var(--paper-ink);
 	}
 	.swap {
 		position: relative;
@@ -840,7 +1211,7 @@
 		content: '';
 		position: absolute;
 		inset: -3px -5px -1px;
-		background: #e9e3e0;
+		background: #d9d0c2;
 		opacity: 0;
 		z-index: 0;
 		animation: es-selection 8s infinite;
@@ -893,6 +1264,9 @@
 		width: 17px;
 		height: 17px;
 		animation: es-cursor 8s infinite;
+	}
+	.cursor path {
+		fill: #17110f;
 	}
 	@keyframes es-cursor {
 		0%,
@@ -1037,6 +1411,50 @@
 		color: var(--fg-3);
 	}
 
+	/* Features */
+	.features-head {
+		display: grid;
+		grid-template-columns: 1.1fr 0.9fr;
+		gap: clamp(24px, 5vw, 64px);
+		align-items: end;
+		margin-bottom: clamp(32px, 4.5vw, 48px);
+	}
+	.features-head .section-lead {
+		margin-top: 0;
+		padding-bottom: 4px;
+	}
+	.feat-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: clamp(28px, 5vw, 56px);
+	}
+	.feat {
+		display: grid;
+		grid-template-columns: 30px 1fr;
+		gap: 14px;
+		padding-block: 24px;
+		border-top: 1px solid var(--line-soft);
+	}
+	.feat .fnum {
+		font-family: var(--font-mono);
+		font-size: 9.5px;
+		letter-spacing: 0.08em;
+		color: var(--fg-3);
+		padding-top: 4px;
+	}
+	.feat h3 {
+		font-size: 17px;
+		font-weight: 500;
+		letter-spacing: -0.02em;
+		line-height: 1.3;
+	}
+	.feat p {
+		margin-top: 7px;
+		font-size: 14px;
+		line-height: 1.62;
+		color: var(--fg-2);
+	}
+
 	/* Proof */
 	.proof {
 		display: grid;
@@ -1058,6 +1476,21 @@
 		line-height: 1.45;
 		letter-spacing: -0.01em;
 		color: var(--fg-2);
+	}
+	.stat-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px 22px;
+		margin-top: 26px;
+		font-family: var(--font-mono);
+		font-size: 10px;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--fg-3);
+	}
+	.stat-row b {
+		font-weight: 500;
+		color: var(--fg);
 	}
 	.proof-img {
 		width: min(292px, 100%);
@@ -1087,7 +1520,7 @@
 	}
 	.pricing-head p {
 		margin: 18px auto 0;
-		max-width: 44ch;
+		max-width: 46ch;
 		font-size: 15px;
 		line-height: 1.6;
 		color: var(--fg-2);
@@ -1101,7 +1534,6 @@
 	.plan {
 		display: flex;
 		flex-direction: column;
-		min-height: 210px;
 		padding: clamp(22px, 3vw, 30px);
 		border-radius: 7px;
 		background: var(--surface-2);
@@ -1124,7 +1556,7 @@
 		font-size: 8px;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		color: var(--fg-2);
+		color: var(--signal);
 	}
 	.plan .price {
 		margin-top: 20px;
@@ -1139,17 +1571,115 @@
 		color: var(--fg-3);
 	}
 	.plan .line {
-		margin-top: auto;
-		padding-top: 22px;
-		font-size: 14px;
-		line-height: 1.55;
+		margin-top: 16px;
+		font-size: 13px;
+		line-height: 1.5;
 		color: var(--fg-2);
+	}
+	.plan-list {
+		margin-top: 20px;
+		padding-top: 16px;
+		border-top: 1px solid var(--line-soft);
+		display: grid;
+		gap: 8px;
+	}
+	.plan-list li {
+		position: relative;
+		padding-left: 15px;
+		font-size: 12.5px;
+		line-height: 1.45;
+		color: var(--fg-2);
+	}
+	.plan-list li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.62em;
+		width: 3px;
+		height: 3px;
+		border-radius: 50%;
+		background: var(--signal);
+		opacity: 0.65;
+	}
+	.plan-cta {
+		margin-top: 26px;
+		padding-top: 16px;
+		border-top: 1px solid var(--line-soft);
+		font-size: 13px;
+		font-weight: 500;
+		color: var(--fg);
+	}
+	.plan-cta span {
+		color: var(--fg-3);
+		font-weight: 400;
 	}
 	.pricing-foot {
 		margin-top: 26px;
 		text-align: center;
 		font-size: 12px;
+		line-height: 1.7;
 		color: var(--fg-3);
+	}
+	.pricing-foot a {
+		color: var(--fg-2);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	/* FAQ */
+	.faq-grid {
+		display: grid;
+		grid-template-columns: 0.72fr 1.28fr;
+		gap: clamp(32px, 6vw, 72px);
+		align-items: start;
+	}
+	.faq-grid h2 {
+		max-width: 8ch;
+	}
+	.faq-grid .section-lead {
+		margin-top: 18px;
+	}
+	.faq {
+		border-top: 1px solid var(--line-soft);
+	}
+	.faq details {
+		border-bottom: 1px solid var(--line-soft);
+	}
+	.faq summary {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 18px;
+		padding-block: 18px;
+		cursor: pointer;
+		list-style: none;
+		font-size: 15px;
+		font-weight: 500;
+		line-height: 1.45;
+		letter-spacing: -0.01em;
+	}
+	.faq summary::-webkit-details-marker {
+		display: none;
+	}
+	.faq summary::after {
+		content: '+';
+		flex: none;
+		font-family: var(--font-mono);
+		font-size: 14px;
+		color: var(--fg-3);
+		transition: transform 0.2s var(--ease);
+	}
+	.faq details[open] summary::after {
+		content: '−';
+	}
+	.faq details p {
+		padding: 0 40px 20px 0;
+		font-size: 14px;
+		line-height: 1.65;
+		color: var(--fg-2);
+	}
+	.faq details[open] summary {
+		color: var(--fg);
 	}
 
 	/* End */
@@ -1166,37 +1696,100 @@
 	}
 	.end .note {
 		margin-inline: auto;
+		max-width: 54ch;
+		line-height: 1.7;
+	}
+	.end .note + .note {
+		margin-top: 8px;
 	}
 
 	/* Footer */
 	.footer {
-		padding-block: 30px 36px;
+		padding-block: 44px 40px;
+		border-top: 1px solid var(--line-soft);
 	}
-	.footer-inner {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 20px;
-		font-size: 12px;
+	.foot-brand {
+		padding-bottom: 34px;
+	}
+	.foot-brand .brand {
+		font-size: 15px;
+	}
+	.foot-brand p {
+		max-width: 40ch;
+		margin-top: 12px;
+		font-size: 12.5px;
+		line-height: 1.65;
 		color: var(--fg-3);
 	}
-	.footer-inner nav {
-		display: flex;
-		gap: 20px;
+	.foot-brand .llms {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		margin-top: 14px;
+		padding: 4px 9px;
+		border: 1px solid var(--line);
+		border-radius: 999px;
+		font-family: var(--font-mono);
+		font-size: 9.5px;
+		letter-spacing: 0.05em;
+		color: var(--fg-3);
 	}
-	.footer-inner a:hover {
+	.foot-brand .llms span {
+		opacity: 0.6;
+	}
+	.foot-cols {
+		display: grid;
+		grid-template-columns: 1fr 1.05fr 1.2fr 1.25fr 0.9fr;
+		gap: 26px;
+		padding-top: 30px;
+		border-top: 1px solid var(--line-soft);
+	}
+	.foot-h {
+		margin-bottom: 12px;
+		font-size: 9.5px;
+		font-weight: 500;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--fg-2);
+	}
+	.foot-cols ul {
+		display: grid;
+		gap: 7px;
+	}
+	.foot-cols a {
+		font-size: 11.5px;
+		line-height: 1.4;
+		color: var(--fg-3);
+		transition: color 0.2s;
+	}
+	.foot-cols a:hover {
 		color: var(--fg);
+	}
+	.foot-base {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 8px 24px;
+		margin-top: 40px;
+		padding-top: 20px;
+		border-top: 1px solid var(--line-soft);
+		font-size: 11px;
+		color: var(--fg-3);
 	}
 
 	@media (max-width: 800px) {
 		:global(:root) {
 			--pad: 22px;
 		}
+		.nav-inner {
+			gap: 14px;
+		}
 		.nav-links {
 			gap: 16px;
 			font-size: 12.5px;
 		}
-		.nav-links a:first-child {
+		.nav-links a:nth-child(2),
+		.nav-links a:nth-child(4) {
 			display: none;
 		}
 		.nav-cta .signin {
@@ -1211,9 +1804,18 @@
 		.hero-split .stage {
 			margin-top: 44px;
 		}
-		.proof {
+		.features-head,
+		.proof,
+		.faq-grid {
 			grid-template-columns: 1fr;
 			align-items: start;
+		}
+		.feat-grid {
+			grid-template-columns: 1fr;
+		}
+		.feat:nth-child(2) {
+			border-top: 0;
+			padding-top: 0;
 		}
 		.proof-img {
 			justify-self: start;
@@ -1229,11 +1831,9 @@
 		.plans {
 			grid-template-columns: 1fr;
 		}
-		.plan {
-			min-height: 0;
-		}
-		.plan .line {
-			padding-top: 16px;
+		.foot-cols {
+			grid-template-columns: 1fr 1fr;
+			gap: 28px 26px;
 		}
 	}
 	@media (max-width: 560px) {
@@ -1254,11 +1854,6 @@
 		}
 		.editor h3 {
 			font-size: clamp(25px, 7.4vw, 32px);
-		}
-		.footer-inner {
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 10px;
 		}
 	}
 	@media (prefers-reduced-motion: reduce) {
@@ -1296,6 +1891,9 @@
 		}
 		.tap {
 			display: none;
+		}
+		.halo::before {
+			animation: none !important;
 		}
 	}
 </style>
