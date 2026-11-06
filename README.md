@@ -17,6 +17,10 @@ Open `/roasts` for every roast, or `/roasts/example` for the slider.
 Copy `src/routes/roasts/example/` to `src/routes/roasts/<site-slug>/`, fill in `roast.ts`, recreate the live site in `before/`, and rebuild it in `after/`.
 [`AGENTS.md`](AGENTS.md) has the full rules.
 
+## Prompts
+
+[`src/routes/roasts/easysociable-com/PROMPTS.md`](src/routes/roasts/easysociable-com/PROMPTS.md) has the prompts that built the EasySociable roast, with a note on why each one worked.
+
 ## License
 
 The code is [MIT](LICENSE).
